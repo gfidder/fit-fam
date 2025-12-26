@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:18.1-alpine
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+    volumes:
+      - pgdata:/var/lib/postgresql/18/docker
+    ports:
+      - 5432:5432
+
+volumes:
+  pgdata:
