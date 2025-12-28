@@ -1,7 +1,6 @@
 import "~/styles/globals.css";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
@@ -21,7 +20,7 @@ const geist = Geist({
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = usePathname();
+  const pathname = "/";
 
   return (
     <html lang="en" className={`${geist.variable}`}>
