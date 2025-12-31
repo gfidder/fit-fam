@@ -1,6 +1,9 @@
 {
-    "prisma.pinToPrisma6": true,
-    "editor.formatOnSave": true,
-    "prettier.enable": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "prisma.pinToPrisma6": true,
+  "editor.formatOnSave": true,
+  "prettier.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

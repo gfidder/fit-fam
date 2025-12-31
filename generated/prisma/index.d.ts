@@ -38,6 +38,16 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  * 
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
+/**
+ * Model Participant
+ * 
+ */
+export type Participant = $Result.DefaultSelection<Prisma.$ParticipantPayload>
+/**
+ * Model WeighIns
+ * 
+ */
+export type WeighIns = $Result.DefaultSelection<Prisma.$WeighInsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -206,6 +216,26 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.participant`: Exposes CRUD operations for the **Participant** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Participants
+    * const participants = await prisma.participant.findMany()
+    * ```
+    */
+  get participant(): Prisma.ParticipantDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.weighIns`: Exposes CRUD operations for the **WeighIns** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WeighIns
+    * const weighIns = await prisma.weighIns.findMany()
+    * ```
+    */
+  get weighIns(): Prisma.WeighInsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -651,7 +681,9 @@ export namespace Prisma {
     User: 'User',
     Session: 'Session',
     Account: 'Account',
-    Verification: 'Verification'
+    Verification: 'Verification',
+    Participant: 'Participant',
+    WeighIns: 'WeighIns'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -670,7 +702,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "post" | "user" | "session" | "account" | "verification"
+      modelProps: "post" | "user" | "session" | "account" | "verification" | "participant" | "weighIns"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1044,6 +1076,154 @@ export namespace Prisma {
           }
         }
       }
+      Participant: {
+        payload: Prisma.$ParticipantPayload<ExtArgs>
+        fields: Prisma.ParticipantFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParticipantFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParticipantFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          findFirst: {
+            args: Prisma.ParticipantFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParticipantFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          findMany: {
+            args: Prisma.ParticipantFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>[]
+          }
+          create: {
+            args: Prisma.ParticipantCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          createMany: {
+            args: Prisma.ParticipantCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParticipantCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>[]
+          }
+          delete: {
+            args: Prisma.ParticipantDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          update: {
+            args: Prisma.ParticipantUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParticipantDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParticipantUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParticipantUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParticipantUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParticipantPayload>
+          }
+          aggregate: {
+            args: Prisma.ParticipantAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParticipant>
+          }
+          groupBy: {
+            args: Prisma.ParticipantGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParticipantGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParticipantCountArgs<ExtArgs>
+            result: $Utils.Optional<ParticipantCountAggregateOutputType> | number
+          }
+        }
+      }
+      WeighIns: {
+        payload: Prisma.$WeighInsPayload<ExtArgs>
+        fields: Prisma.WeighInsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WeighInsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WeighInsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          findFirst: {
+            args: Prisma.WeighInsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WeighInsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          findMany: {
+            args: Prisma.WeighInsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>[]
+          }
+          create: {
+            args: Prisma.WeighInsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          createMany: {
+            args: Prisma.WeighInsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WeighInsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>[]
+          }
+          delete: {
+            args: Prisma.WeighInsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          update: {
+            args: Prisma.WeighInsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          deleteMany: {
+            args: Prisma.WeighInsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WeighInsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WeighInsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>[]
+          }
+          upsert: {
+            args: Prisma.WeighInsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WeighInsPayload>
+          }
+          aggregate: {
+            args: Prisma.WeighInsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWeighIns>
+          }
+          groupBy: {
+            args: Prisma.WeighInsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WeighInsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WeighInsCountArgs<ExtArgs>
+            result: $Utils.Optional<WeighInsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1145,6 +1325,8 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
+    participant?: ParticipantOmit
+    weighIns?: WeighInsOmit
   }
 
   /* Types for Logging */
@@ -1266,6 +1448,37 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PostWhereInput
+  }
+
+
+  /**
+   * Count Type ParticipantCountOutputType
+   */
+
+  export type ParticipantCountOutputType = {
+    weighIns: number
+  }
+
+  export type ParticipantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    weighIns?: boolean | ParticipantCountOutputTypeCountWeighInsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParticipantCountOutputType without action
+   */
+  export type ParticipantCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParticipantCountOutputType
+     */
+    select?: ParticipantCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParticipantCountOutputType without action
+   */
+  export type ParticipantCountOutputTypeCountWeighInsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WeighInsWhereInput
   }
 
 
@@ -2514,6 +2727,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    participant?: boolean | User$participantArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2552,6 +2766,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    participant?: boolean | User$participantArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2563,6 +2778,7 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
+      participant: Prisma.$ParticipantPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2969,6 +3185,7 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    participant<T extends User$participantArgs<ExtArgs> = {}>(args?: Subset<T, User$participantArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3462,6 +3679,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * User.participant
+   */
+  export type User$participantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    where?: ParticipantWhereInput
   }
 
   /**
@@ -6751,6 +6987,2236 @@ export namespace Prisma {
 
 
   /**
+   * Model Participant
+   */
+
+  export type AggregateParticipant = {
+    _count: ParticipantCountAggregateOutputType | null
+    _avg: ParticipantAvgAggregateOutputType | null
+    _sum: ParticipantSumAggregateOutputType | null
+    _min: ParticipantMinAggregateOutputType | null
+    _max: ParticipantMaxAggregateOutputType | null
+  }
+
+  export type ParticipantAvgAggregateOutputType = {
+    id: number | null
+    goalWeight: number | null
+    startingWeight: number | null
+  }
+
+  export type ParticipantSumAggregateOutputType = {
+    id: number | null
+    goalWeight: number | null
+    startingWeight: number | null
+  }
+
+  export type ParticipantMinAggregateOutputType = {
+    id: number | null
+    goalWeight: number | null
+    goalDate: Date | null
+    startingWeight: number | null
+    userId: string | null
+  }
+
+  export type ParticipantMaxAggregateOutputType = {
+    id: number | null
+    goalWeight: number | null
+    goalDate: Date | null
+    startingWeight: number | null
+    userId: string | null
+  }
+
+  export type ParticipantCountAggregateOutputType = {
+    id: number
+    goalWeight: number
+    goalDate: number
+    startingWeight: number
+    userId: number
+    _all: number
+  }
+
+
+  export type ParticipantAvgAggregateInputType = {
+    id?: true
+    goalWeight?: true
+    startingWeight?: true
+  }
+
+  export type ParticipantSumAggregateInputType = {
+    id?: true
+    goalWeight?: true
+    startingWeight?: true
+  }
+
+  export type ParticipantMinAggregateInputType = {
+    id?: true
+    goalWeight?: true
+    goalDate?: true
+    startingWeight?: true
+    userId?: true
+  }
+
+  export type ParticipantMaxAggregateInputType = {
+    id?: true
+    goalWeight?: true
+    goalDate?: true
+    startingWeight?: true
+    userId?: true
+  }
+
+  export type ParticipantCountAggregateInputType = {
+    id?: true
+    goalWeight?: true
+    goalDate?: true
+    startingWeight?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type ParticipantAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Participant to aggregate.
+     */
+    where?: ParticipantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Participants to fetch.
+     */
+    orderBy?: ParticipantOrderByWithRelationInput | ParticipantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParticipantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Participants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Participants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Participants
+    **/
+    _count?: true | ParticipantCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParticipantAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParticipantSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParticipantMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParticipantMaxAggregateInputType
+  }
+
+  export type GetParticipantAggregateType<T extends ParticipantAggregateArgs> = {
+        [P in keyof T & keyof AggregateParticipant]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParticipant[P]>
+      : GetScalarType<T[P], AggregateParticipant[P]>
+  }
+
+
+
+
+  export type ParticipantGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParticipantWhereInput
+    orderBy?: ParticipantOrderByWithAggregationInput | ParticipantOrderByWithAggregationInput[]
+    by: ParticipantScalarFieldEnum[] | ParticipantScalarFieldEnum
+    having?: ParticipantScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParticipantCountAggregateInputType | true
+    _avg?: ParticipantAvgAggregateInputType
+    _sum?: ParticipantSumAggregateInputType
+    _min?: ParticipantMinAggregateInputType
+    _max?: ParticipantMaxAggregateInputType
+  }
+
+  export type ParticipantGroupByOutputType = {
+    id: number
+    goalWeight: number
+    goalDate: Date
+    startingWeight: number
+    userId: string
+    _count: ParticipantCountAggregateOutputType | null
+    _avg: ParticipantAvgAggregateOutputType | null
+    _sum: ParticipantSumAggregateOutputType | null
+    _min: ParticipantMinAggregateOutputType | null
+    _max: ParticipantMaxAggregateOutputType | null
+  }
+
+  type GetParticipantGroupByPayload<T extends ParticipantGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParticipantGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParticipantGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParticipantGroupByOutputType[P]>
+            : GetScalarType<T[P], ParticipantGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParticipantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    goalWeight?: boolean
+    goalDate?: boolean
+    startingWeight?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    weighIns?: boolean | Participant$weighInsArgs<ExtArgs>
+    _count?: boolean | ParticipantCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["participant"]>
+
+  export type ParticipantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    goalWeight?: boolean
+    goalDate?: boolean
+    startingWeight?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["participant"]>
+
+  export type ParticipantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    goalWeight?: boolean
+    goalDate?: boolean
+    startingWeight?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["participant"]>
+
+  export type ParticipantSelectScalar = {
+    id?: boolean
+    goalWeight?: boolean
+    goalDate?: boolean
+    startingWeight?: boolean
+    userId?: boolean
+  }
+
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "goalWeight" | "goalDate" | "startingWeight" | "userId", ExtArgs["result"]["participant"]>
+  export type ParticipantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    weighIns?: boolean | Participant$weighInsArgs<ExtArgs>
+    _count?: boolean | ParticipantCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParticipantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ParticipantIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Participant"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      weighIns: Prisma.$WeighInsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      goalWeight: number
+      goalDate: Date
+      startingWeight: number
+      userId: string
+    }, ExtArgs["result"]["participant"]>
+    composites: {}
+  }
+
+  type ParticipantGetPayload<S extends boolean | null | undefined | ParticipantDefaultArgs> = $Result.GetResult<Prisma.$ParticipantPayload, S>
+
+  type ParticipantCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParticipantFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParticipantCountAggregateInputType | true
+    }
+
+  export interface ParticipantDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Participant'], meta: { name: 'Participant' } }
+    /**
+     * Find zero or one Participant that matches the filter.
+     * @param {ParticipantFindUniqueArgs} args - Arguments to find a Participant
+     * @example
+     * // Get one Participant
+     * const participant = await prisma.participant.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParticipantFindUniqueArgs>(args: SelectSubset<T, ParticipantFindUniqueArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Participant that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParticipantFindUniqueOrThrowArgs} args - Arguments to find a Participant
+     * @example
+     * // Get one Participant
+     * const participant = await prisma.participant.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParticipantFindUniqueOrThrowArgs>(args: SelectSubset<T, ParticipantFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Participant that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantFindFirstArgs} args - Arguments to find a Participant
+     * @example
+     * // Get one Participant
+     * const participant = await prisma.participant.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParticipantFindFirstArgs>(args?: SelectSubset<T, ParticipantFindFirstArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Participant that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantFindFirstOrThrowArgs} args - Arguments to find a Participant
+     * @example
+     * // Get one Participant
+     * const participant = await prisma.participant.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParticipantFindFirstOrThrowArgs>(args?: SelectSubset<T, ParticipantFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Participants that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Participants
+     * const participants = await prisma.participant.findMany()
+     * 
+     * // Get first 10 Participants
+     * const participants = await prisma.participant.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const participantWithIdOnly = await prisma.participant.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParticipantFindManyArgs>(args?: SelectSubset<T, ParticipantFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Participant.
+     * @param {ParticipantCreateArgs} args - Arguments to create a Participant.
+     * @example
+     * // Create one Participant
+     * const Participant = await prisma.participant.create({
+     *   data: {
+     *     // ... data to create a Participant
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParticipantCreateArgs>(args: SelectSubset<T, ParticipantCreateArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Participants.
+     * @param {ParticipantCreateManyArgs} args - Arguments to create many Participants.
+     * @example
+     * // Create many Participants
+     * const participant = await prisma.participant.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParticipantCreateManyArgs>(args?: SelectSubset<T, ParticipantCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Participants and returns the data saved in the database.
+     * @param {ParticipantCreateManyAndReturnArgs} args - Arguments to create many Participants.
+     * @example
+     * // Create many Participants
+     * const participant = await prisma.participant.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Participants and only return the `id`
+     * const participantWithIdOnly = await prisma.participant.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParticipantCreateManyAndReturnArgs>(args?: SelectSubset<T, ParticipantCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Participant.
+     * @param {ParticipantDeleteArgs} args - Arguments to delete one Participant.
+     * @example
+     * // Delete one Participant
+     * const Participant = await prisma.participant.delete({
+     *   where: {
+     *     // ... filter to delete one Participant
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParticipantDeleteArgs>(args: SelectSubset<T, ParticipantDeleteArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Participant.
+     * @param {ParticipantUpdateArgs} args - Arguments to update one Participant.
+     * @example
+     * // Update one Participant
+     * const participant = await prisma.participant.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParticipantUpdateArgs>(args: SelectSubset<T, ParticipantUpdateArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Participants.
+     * @param {ParticipantDeleteManyArgs} args - Arguments to filter Participants to delete.
+     * @example
+     * // Delete a few Participants
+     * const { count } = await prisma.participant.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParticipantDeleteManyArgs>(args?: SelectSubset<T, ParticipantDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Participants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Participants
+     * const participant = await prisma.participant.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParticipantUpdateManyArgs>(args: SelectSubset<T, ParticipantUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Participants and returns the data updated in the database.
+     * @param {ParticipantUpdateManyAndReturnArgs} args - Arguments to update many Participants.
+     * @example
+     * // Update many Participants
+     * const participant = await prisma.participant.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Participants and only return the `id`
+     * const participantWithIdOnly = await prisma.participant.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParticipantUpdateManyAndReturnArgs>(args: SelectSubset<T, ParticipantUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Participant.
+     * @param {ParticipantUpsertArgs} args - Arguments to update or create a Participant.
+     * @example
+     * // Update or create a Participant
+     * const participant = await prisma.participant.upsert({
+     *   create: {
+     *     // ... data to create a Participant
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Participant we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParticipantUpsertArgs>(args: SelectSubset<T, ParticipantUpsertArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Participants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantCountArgs} args - Arguments to filter Participants to count.
+     * @example
+     * // Count the number of Participants
+     * const count = await prisma.participant.count({
+     *   where: {
+     *     // ... the filter for the Participants we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParticipantCountArgs>(
+      args?: Subset<T, ParticipantCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParticipantCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Participant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParticipantAggregateArgs>(args: Subset<T, ParticipantAggregateArgs>): Prisma.PrismaPromise<GetParticipantAggregateType<T>>
+
+    /**
+     * Group by Participant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParticipantGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParticipantGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParticipantGroupByArgs['orderBy'] }
+        : { orderBy?: ParticipantGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParticipantGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParticipantGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Participant model
+   */
+  readonly fields: ParticipantFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Participant.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParticipantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    weighIns<T extends Participant$weighInsArgs<ExtArgs> = {}>(args?: Subset<T, Participant$weighInsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Participant model
+   */
+  interface ParticipantFieldRefs {
+    readonly id: FieldRef<"Participant", 'Int'>
+    readonly goalWeight: FieldRef<"Participant", 'Int'>
+    readonly goalDate: FieldRef<"Participant", 'DateTime'>
+    readonly startingWeight: FieldRef<"Participant", 'Int'>
+    readonly userId: FieldRef<"Participant", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Participant findUnique
+   */
+  export type ParticipantFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter, which Participant to fetch.
+     */
+    where: ParticipantWhereUniqueInput
+  }
+
+  /**
+   * Participant findUniqueOrThrow
+   */
+  export type ParticipantFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter, which Participant to fetch.
+     */
+    where: ParticipantWhereUniqueInput
+  }
+
+  /**
+   * Participant findFirst
+   */
+  export type ParticipantFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter, which Participant to fetch.
+     */
+    where?: ParticipantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Participants to fetch.
+     */
+    orderBy?: ParticipantOrderByWithRelationInput | ParticipantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Participants.
+     */
+    cursor?: ParticipantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Participants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Participants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Participants.
+     */
+    distinct?: ParticipantScalarFieldEnum | ParticipantScalarFieldEnum[]
+  }
+
+  /**
+   * Participant findFirstOrThrow
+   */
+  export type ParticipantFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter, which Participant to fetch.
+     */
+    where?: ParticipantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Participants to fetch.
+     */
+    orderBy?: ParticipantOrderByWithRelationInput | ParticipantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Participants.
+     */
+    cursor?: ParticipantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Participants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Participants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Participants.
+     */
+    distinct?: ParticipantScalarFieldEnum | ParticipantScalarFieldEnum[]
+  }
+
+  /**
+   * Participant findMany
+   */
+  export type ParticipantFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter, which Participants to fetch.
+     */
+    where?: ParticipantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Participants to fetch.
+     */
+    orderBy?: ParticipantOrderByWithRelationInput | ParticipantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Participants.
+     */
+    cursor?: ParticipantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Participants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Participants.
+     */
+    skip?: number
+    distinct?: ParticipantScalarFieldEnum | ParticipantScalarFieldEnum[]
+  }
+
+  /**
+   * Participant create
+   */
+  export type ParticipantCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Participant.
+     */
+    data: XOR<ParticipantCreateInput, ParticipantUncheckedCreateInput>
+  }
+
+  /**
+   * Participant createMany
+   */
+  export type ParticipantCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Participants.
+     */
+    data: ParticipantCreateManyInput | ParticipantCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Participant createManyAndReturn
+   */
+  export type ParticipantCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * The data used to create many Participants.
+     */
+    data: ParticipantCreateManyInput | ParticipantCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Participant update
+   */
+  export type ParticipantUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Participant.
+     */
+    data: XOR<ParticipantUpdateInput, ParticipantUncheckedUpdateInput>
+    /**
+     * Choose, which Participant to update.
+     */
+    where: ParticipantWhereUniqueInput
+  }
+
+  /**
+   * Participant updateMany
+   */
+  export type ParticipantUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Participants.
+     */
+    data: XOR<ParticipantUpdateManyMutationInput, ParticipantUncheckedUpdateManyInput>
+    /**
+     * Filter which Participants to update
+     */
+    where?: ParticipantWhereInput
+    /**
+     * Limit how many Participants to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Participant updateManyAndReturn
+   */
+  export type ParticipantUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * The data used to update Participants.
+     */
+    data: XOR<ParticipantUpdateManyMutationInput, ParticipantUncheckedUpdateManyInput>
+    /**
+     * Filter which Participants to update
+     */
+    where?: ParticipantWhereInput
+    /**
+     * Limit how many Participants to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Participant upsert
+   */
+  export type ParticipantUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Participant to update in case it exists.
+     */
+    where: ParticipantWhereUniqueInput
+    /**
+     * In case the Participant found by the `where` argument doesn't exist, create a new Participant with this data.
+     */
+    create: XOR<ParticipantCreateInput, ParticipantUncheckedCreateInput>
+    /**
+     * In case the Participant was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParticipantUpdateInput, ParticipantUncheckedUpdateInput>
+  }
+
+  /**
+   * Participant delete
+   */
+  export type ParticipantDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+    /**
+     * Filter which Participant to delete.
+     */
+    where: ParticipantWhereUniqueInput
+  }
+
+  /**
+   * Participant deleteMany
+   */
+  export type ParticipantDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Participants to delete
+     */
+    where?: ParticipantWhereInput
+    /**
+     * Limit how many Participants to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Participant.weighIns
+   */
+  export type Participant$weighInsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    where?: WeighInsWhereInput
+    orderBy?: WeighInsOrderByWithRelationInput | WeighInsOrderByWithRelationInput[]
+    cursor?: WeighInsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WeighInsScalarFieldEnum | WeighInsScalarFieldEnum[]
+  }
+
+  /**
+   * Participant without action
+   */
+  export type ParticipantDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Participant
+     */
+    select?: ParticipantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Participant
+     */
+    omit?: ParticipantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParticipantInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WeighIns
+   */
+
+  export type AggregateWeighIns = {
+    _count: WeighInsCountAggregateOutputType | null
+    _avg: WeighInsAvgAggregateOutputType | null
+    _sum: WeighInsSumAggregateOutputType | null
+    _min: WeighInsMinAggregateOutputType | null
+    _max: WeighInsMaxAggregateOutputType | null
+  }
+
+  export type WeighInsAvgAggregateOutputType = {
+    id: number | null
+    weight: number | null
+    participantId: number | null
+  }
+
+  export type WeighInsSumAggregateOutputType = {
+    id: number | null
+    weight: number | null
+    participantId: number | null
+  }
+
+  export type WeighInsMinAggregateOutputType = {
+    id: number | null
+    weight: number | null
+    date: Date | null
+    updatedAt: Date | null
+    participantId: number | null
+  }
+
+  export type WeighInsMaxAggregateOutputType = {
+    id: number | null
+    weight: number | null
+    date: Date | null
+    updatedAt: Date | null
+    participantId: number | null
+  }
+
+  export type WeighInsCountAggregateOutputType = {
+    id: number
+    weight: number
+    date: number
+    updatedAt: number
+    participantId: number
+    _all: number
+  }
+
+
+  export type WeighInsAvgAggregateInputType = {
+    id?: true
+    weight?: true
+    participantId?: true
+  }
+
+  export type WeighInsSumAggregateInputType = {
+    id?: true
+    weight?: true
+    participantId?: true
+  }
+
+  export type WeighInsMinAggregateInputType = {
+    id?: true
+    weight?: true
+    date?: true
+    updatedAt?: true
+    participantId?: true
+  }
+
+  export type WeighInsMaxAggregateInputType = {
+    id?: true
+    weight?: true
+    date?: true
+    updatedAt?: true
+    participantId?: true
+  }
+
+  export type WeighInsCountAggregateInputType = {
+    id?: true
+    weight?: true
+    date?: true
+    updatedAt?: true
+    participantId?: true
+    _all?: true
+  }
+
+  export type WeighInsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WeighIns to aggregate.
+     */
+    where?: WeighInsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WeighIns to fetch.
+     */
+    orderBy?: WeighInsOrderByWithRelationInput | WeighInsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WeighInsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WeighIns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WeighIns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WeighIns
+    **/
+    _count?: true | WeighInsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WeighInsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WeighInsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WeighInsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WeighInsMaxAggregateInputType
+  }
+
+  export type GetWeighInsAggregateType<T extends WeighInsAggregateArgs> = {
+        [P in keyof T & keyof AggregateWeighIns]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWeighIns[P]>
+      : GetScalarType<T[P], AggregateWeighIns[P]>
+  }
+
+
+
+
+  export type WeighInsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WeighInsWhereInput
+    orderBy?: WeighInsOrderByWithAggregationInput | WeighInsOrderByWithAggregationInput[]
+    by: WeighInsScalarFieldEnum[] | WeighInsScalarFieldEnum
+    having?: WeighInsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WeighInsCountAggregateInputType | true
+    _avg?: WeighInsAvgAggregateInputType
+    _sum?: WeighInsSumAggregateInputType
+    _min?: WeighInsMinAggregateInputType
+    _max?: WeighInsMaxAggregateInputType
+  }
+
+  export type WeighInsGroupByOutputType = {
+    id: number
+    weight: number
+    date: Date
+    updatedAt: Date
+    participantId: number
+    _count: WeighInsCountAggregateOutputType | null
+    _avg: WeighInsAvgAggregateOutputType | null
+    _sum: WeighInsSumAggregateOutputType | null
+    _min: WeighInsMinAggregateOutputType | null
+    _max: WeighInsMaxAggregateOutputType | null
+  }
+
+  type GetWeighInsGroupByPayload<T extends WeighInsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WeighInsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WeighInsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WeighInsGroupByOutputType[P]>
+            : GetScalarType<T[P], WeighInsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WeighInsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weight?: boolean
+    date?: boolean
+    updatedAt?: boolean
+    participantId?: boolean
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["weighIns"]>
+
+  export type WeighInsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weight?: boolean
+    date?: boolean
+    updatedAt?: boolean
+    participantId?: boolean
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["weighIns"]>
+
+  export type WeighInsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weight?: boolean
+    date?: boolean
+    updatedAt?: boolean
+    participantId?: boolean
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["weighIns"]>
+
+  export type WeighInsSelectScalar = {
+    id?: boolean
+    weight?: boolean
+    date?: boolean
+    updatedAt?: boolean
+    participantId?: boolean
+  }
+
+  export type WeighInsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "weight" | "date" | "updatedAt" | "participantId", ExtArgs["result"]["weighIns"]>
+  export type WeighInsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }
+  export type WeighInsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }
+  export type WeighInsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    participant?: boolean | ParticipantDefaultArgs<ExtArgs>
+  }
+
+  export type $WeighInsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WeighIns"
+    objects: {
+      participant: Prisma.$ParticipantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      weight: number
+      date: Date
+      updatedAt: Date
+      participantId: number
+    }, ExtArgs["result"]["weighIns"]>
+    composites: {}
+  }
+
+  type WeighInsGetPayload<S extends boolean | null | undefined | WeighInsDefaultArgs> = $Result.GetResult<Prisma.$WeighInsPayload, S>
+
+  type WeighInsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WeighInsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WeighInsCountAggregateInputType | true
+    }
+
+  export interface WeighInsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WeighIns'], meta: { name: 'WeighIns' } }
+    /**
+     * Find zero or one WeighIns that matches the filter.
+     * @param {WeighInsFindUniqueArgs} args - Arguments to find a WeighIns
+     * @example
+     * // Get one WeighIns
+     * const weighIns = await prisma.weighIns.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WeighInsFindUniqueArgs>(args: SelectSubset<T, WeighInsFindUniqueArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WeighIns that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WeighInsFindUniqueOrThrowArgs} args - Arguments to find a WeighIns
+     * @example
+     * // Get one WeighIns
+     * const weighIns = await prisma.weighIns.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WeighInsFindUniqueOrThrowArgs>(args: SelectSubset<T, WeighInsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WeighIns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsFindFirstArgs} args - Arguments to find a WeighIns
+     * @example
+     * // Get one WeighIns
+     * const weighIns = await prisma.weighIns.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WeighInsFindFirstArgs>(args?: SelectSubset<T, WeighInsFindFirstArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WeighIns that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsFindFirstOrThrowArgs} args - Arguments to find a WeighIns
+     * @example
+     * // Get one WeighIns
+     * const weighIns = await prisma.weighIns.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WeighInsFindFirstOrThrowArgs>(args?: SelectSubset<T, WeighInsFindFirstOrThrowArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WeighIns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WeighIns
+     * const weighIns = await prisma.weighIns.findMany()
+     * 
+     * // Get first 10 WeighIns
+     * const weighIns = await prisma.weighIns.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const weighInsWithIdOnly = await prisma.weighIns.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WeighInsFindManyArgs>(args?: SelectSubset<T, WeighInsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WeighIns.
+     * @param {WeighInsCreateArgs} args - Arguments to create a WeighIns.
+     * @example
+     * // Create one WeighIns
+     * const WeighIns = await prisma.weighIns.create({
+     *   data: {
+     *     // ... data to create a WeighIns
+     *   }
+     * })
+     * 
+     */
+    create<T extends WeighInsCreateArgs>(args: SelectSubset<T, WeighInsCreateArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WeighIns.
+     * @param {WeighInsCreateManyArgs} args - Arguments to create many WeighIns.
+     * @example
+     * // Create many WeighIns
+     * const weighIns = await prisma.weighIns.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WeighInsCreateManyArgs>(args?: SelectSubset<T, WeighInsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WeighIns and returns the data saved in the database.
+     * @param {WeighInsCreateManyAndReturnArgs} args - Arguments to create many WeighIns.
+     * @example
+     * // Create many WeighIns
+     * const weighIns = await prisma.weighIns.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WeighIns and only return the `id`
+     * const weighInsWithIdOnly = await prisma.weighIns.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WeighInsCreateManyAndReturnArgs>(args?: SelectSubset<T, WeighInsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WeighIns.
+     * @param {WeighInsDeleteArgs} args - Arguments to delete one WeighIns.
+     * @example
+     * // Delete one WeighIns
+     * const WeighIns = await prisma.weighIns.delete({
+     *   where: {
+     *     // ... filter to delete one WeighIns
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WeighInsDeleteArgs>(args: SelectSubset<T, WeighInsDeleteArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WeighIns.
+     * @param {WeighInsUpdateArgs} args - Arguments to update one WeighIns.
+     * @example
+     * // Update one WeighIns
+     * const weighIns = await prisma.weighIns.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WeighInsUpdateArgs>(args: SelectSubset<T, WeighInsUpdateArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WeighIns.
+     * @param {WeighInsDeleteManyArgs} args - Arguments to filter WeighIns to delete.
+     * @example
+     * // Delete a few WeighIns
+     * const { count } = await prisma.weighIns.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WeighInsDeleteManyArgs>(args?: SelectSubset<T, WeighInsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WeighIns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WeighIns
+     * const weighIns = await prisma.weighIns.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WeighInsUpdateManyArgs>(args: SelectSubset<T, WeighInsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WeighIns and returns the data updated in the database.
+     * @param {WeighInsUpdateManyAndReturnArgs} args - Arguments to update many WeighIns.
+     * @example
+     * // Update many WeighIns
+     * const weighIns = await prisma.weighIns.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WeighIns and only return the `id`
+     * const weighInsWithIdOnly = await prisma.weighIns.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WeighInsUpdateManyAndReturnArgs>(args: SelectSubset<T, WeighInsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WeighIns.
+     * @param {WeighInsUpsertArgs} args - Arguments to update or create a WeighIns.
+     * @example
+     * // Update or create a WeighIns
+     * const weighIns = await prisma.weighIns.upsert({
+     *   create: {
+     *     // ... data to create a WeighIns
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WeighIns we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WeighInsUpsertArgs>(args: SelectSubset<T, WeighInsUpsertArgs<ExtArgs>>): Prisma__WeighInsClient<$Result.GetResult<Prisma.$WeighInsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WeighIns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsCountArgs} args - Arguments to filter WeighIns to count.
+     * @example
+     * // Count the number of WeighIns
+     * const count = await prisma.weighIns.count({
+     *   where: {
+     *     // ... the filter for the WeighIns we want to count
+     *   }
+     * })
+    **/
+    count<T extends WeighInsCountArgs>(
+      args?: Subset<T, WeighInsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WeighInsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WeighIns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WeighInsAggregateArgs>(args: Subset<T, WeighInsAggregateArgs>): Prisma.PrismaPromise<GetWeighInsAggregateType<T>>
+
+    /**
+     * Group by WeighIns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WeighInsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WeighInsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WeighInsGroupByArgs['orderBy'] }
+        : { orderBy?: WeighInsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WeighInsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWeighInsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WeighIns model
+   */
+  readonly fields: WeighInsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WeighIns.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WeighInsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    participant<T extends ParticipantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ParticipantDefaultArgs<ExtArgs>>): Prisma__ParticipantClient<$Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WeighIns model
+   */
+  interface WeighInsFieldRefs {
+    readonly id: FieldRef<"WeighIns", 'Int'>
+    readonly weight: FieldRef<"WeighIns", 'Float'>
+    readonly date: FieldRef<"WeighIns", 'DateTime'>
+    readonly updatedAt: FieldRef<"WeighIns", 'DateTime'>
+    readonly participantId: FieldRef<"WeighIns", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WeighIns findUnique
+   */
+  export type WeighInsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter, which WeighIns to fetch.
+     */
+    where: WeighInsWhereUniqueInput
+  }
+
+  /**
+   * WeighIns findUniqueOrThrow
+   */
+  export type WeighInsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter, which WeighIns to fetch.
+     */
+    where: WeighInsWhereUniqueInput
+  }
+
+  /**
+   * WeighIns findFirst
+   */
+  export type WeighInsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter, which WeighIns to fetch.
+     */
+    where?: WeighInsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WeighIns to fetch.
+     */
+    orderBy?: WeighInsOrderByWithRelationInput | WeighInsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WeighIns.
+     */
+    cursor?: WeighInsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WeighIns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WeighIns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WeighIns.
+     */
+    distinct?: WeighInsScalarFieldEnum | WeighInsScalarFieldEnum[]
+  }
+
+  /**
+   * WeighIns findFirstOrThrow
+   */
+  export type WeighInsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter, which WeighIns to fetch.
+     */
+    where?: WeighInsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WeighIns to fetch.
+     */
+    orderBy?: WeighInsOrderByWithRelationInput | WeighInsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WeighIns.
+     */
+    cursor?: WeighInsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WeighIns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WeighIns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WeighIns.
+     */
+    distinct?: WeighInsScalarFieldEnum | WeighInsScalarFieldEnum[]
+  }
+
+  /**
+   * WeighIns findMany
+   */
+  export type WeighInsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter, which WeighIns to fetch.
+     */
+    where?: WeighInsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WeighIns to fetch.
+     */
+    orderBy?: WeighInsOrderByWithRelationInput | WeighInsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WeighIns.
+     */
+    cursor?: WeighInsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WeighIns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WeighIns.
+     */
+    skip?: number
+    distinct?: WeighInsScalarFieldEnum | WeighInsScalarFieldEnum[]
+  }
+
+  /**
+   * WeighIns create
+   */
+  export type WeighInsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WeighIns.
+     */
+    data: XOR<WeighInsCreateInput, WeighInsUncheckedCreateInput>
+  }
+
+  /**
+   * WeighIns createMany
+   */
+  export type WeighInsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WeighIns.
+     */
+    data: WeighInsCreateManyInput | WeighInsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WeighIns createManyAndReturn
+   */
+  export type WeighInsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * The data used to create many WeighIns.
+     */
+    data: WeighInsCreateManyInput | WeighInsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WeighIns update
+   */
+  export type WeighInsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WeighIns.
+     */
+    data: XOR<WeighInsUpdateInput, WeighInsUncheckedUpdateInput>
+    /**
+     * Choose, which WeighIns to update.
+     */
+    where: WeighInsWhereUniqueInput
+  }
+
+  /**
+   * WeighIns updateMany
+   */
+  export type WeighInsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WeighIns.
+     */
+    data: XOR<WeighInsUpdateManyMutationInput, WeighInsUncheckedUpdateManyInput>
+    /**
+     * Filter which WeighIns to update
+     */
+    where?: WeighInsWhereInput
+    /**
+     * Limit how many WeighIns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WeighIns updateManyAndReturn
+   */
+  export type WeighInsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * The data used to update WeighIns.
+     */
+    data: XOR<WeighInsUpdateManyMutationInput, WeighInsUncheckedUpdateManyInput>
+    /**
+     * Filter which WeighIns to update
+     */
+    where?: WeighInsWhereInput
+    /**
+     * Limit how many WeighIns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WeighIns upsert
+   */
+  export type WeighInsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WeighIns to update in case it exists.
+     */
+    where: WeighInsWhereUniqueInput
+    /**
+     * In case the WeighIns found by the `where` argument doesn't exist, create a new WeighIns with this data.
+     */
+    create: XOR<WeighInsCreateInput, WeighInsUncheckedCreateInput>
+    /**
+     * In case the WeighIns was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WeighInsUpdateInput, WeighInsUncheckedUpdateInput>
+  }
+
+  /**
+   * WeighIns delete
+   */
+  export type WeighInsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+    /**
+     * Filter which WeighIns to delete.
+     */
+    where: WeighInsWhereUniqueInput
+  }
+
+  /**
+   * WeighIns deleteMany
+   */
+  export type WeighInsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WeighIns to delete
+     */
+    where?: WeighInsWhereInput
+    /**
+     * Limit how many WeighIns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WeighIns without action
+   */
+  export type WeighInsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WeighIns
+     */
+    select?: WeighInsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WeighIns
+     */
+    omit?: WeighInsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WeighInsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6833,6 +9299,28 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
+  export const ParticipantScalarFieldEnum: {
+    id: 'id',
+    goalWeight: 'goalWeight',
+    goalDate: 'goalDate',
+    startingWeight: 'startingWeight',
+    userId: 'userId'
+  };
+
+  export type ParticipantScalarFieldEnum = (typeof ParticipantScalarFieldEnum)[keyof typeof ParticipantScalarFieldEnum]
+
+
+  export const WeighInsScalarFieldEnum: {
+    id: 'id',
+    weight: 'weight',
+    date: 'date',
+    updatedAt: 'updatedAt',
+    participantId: 'participantId'
+  };
+
+  export type WeighInsScalarFieldEnum = (typeof WeighInsScalarFieldEnum)[keyof typeof WeighInsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -6909,6 +9397,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -6983,6 +9485,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    participant?: XOR<ParticipantNullableScalarRelationFilter, ParticipantWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6996,6 +9499,7 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
+    participant?: ParticipantOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7012,6 +9516,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    participant?: XOR<ParticipantNullableScalarRelationFilter, ParticipantWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7262,6 +9767,123 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
+  export type ParticipantWhereInput = {
+    AND?: ParticipantWhereInput | ParticipantWhereInput[]
+    OR?: ParticipantWhereInput[]
+    NOT?: ParticipantWhereInput | ParticipantWhereInput[]
+    id?: IntFilter<"Participant"> | number
+    goalWeight?: IntFilter<"Participant"> | number
+    goalDate?: DateTimeFilter<"Participant"> | Date | string
+    startingWeight?: IntFilter<"Participant"> | number
+    userId?: StringFilter<"Participant"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    weighIns?: WeighInsListRelationFilter
+  }
+
+  export type ParticipantOrderByWithRelationInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    goalDate?: SortOrder
+    startingWeight?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    weighIns?: WeighInsOrderByRelationAggregateInput
+  }
+
+  export type ParticipantWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: string
+    AND?: ParticipantWhereInput | ParticipantWhereInput[]
+    OR?: ParticipantWhereInput[]
+    NOT?: ParticipantWhereInput | ParticipantWhereInput[]
+    goalWeight?: IntFilter<"Participant"> | number
+    goalDate?: DateTimeFilter<"Participant"> | Date | string
+    startingWeight?: IntFilter<"Participant"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    weighIns?: WeighInsListRelationFilter
+  }, "id" | "userId">
+
+  export type ParticipantOrderByWithAggregationInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    goalDate?: SortOrder
+    startingWeight?: SortOrder
+    userId?: SortOrder
+    _count?: ParticipantCountOrderByAggregateInput
+    _avg?: ParticipantAvgOrderByAggregateInput
+    _max?: ParticipantMaxOrderByAggregateInput
+    _min?: ParticipantMinOrderByAggregateInput
+    _sum?: ParticipantSumOrderByAggregateInput
+  }
+
+  export type ParticipantScalarWhereWithAggregatesInput = {
+    AND?: ParticipantScalarWhereWithAggregatesInput | ParticipantScalarWhereWithAggregatesInput[]
+    OR?: ParticipantScalarWhereWithAggregatesInput[]
+    NOT?: ParticipantScalarWhereWithAggregatesInput | ParticipantScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Participant"> | number
+    goalWeight?: IntWithAggregatesFilter<"Participant"> | number
+    goalDate?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
+    startingWeight?: IntWithAggregatesFilter<"Participant"> | number
+    userId?: StringWithAggregatesFilter<"Participant"> | string
+  }
+
+  export type WeighInsWhereInput = {
+    AND?: WeighInsWhereInput | WeighInsWhereInput[]
+    OR?: WeighInsWhereInput[]
+    NOT?: WeighInsWhereInput | WeighInsWhereInput[]
+    id?: IntFilter<"WeighIns"> | number
+    weight?: FloatFilter<"WeighIns"> | number
+    date?: DateTimeFilter<"WeighIns"> | Date | string
+    updatedAt?: DateTimeFilter<"WeighIns"> | Date | string
+    participantId?: IntFilter<"WeighIns"> | number
+    participant?: XOR<ParticipantScalarRelationFilter, ParticipantWhereInput>
+  }
+
+  export type WeighInsOrderByWithRelationInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    date?: SortOrder
+    updatedAt?: SortOrder
+    participantId?: SortOrder
+    participant?: ParticipantOrderByWithRelationInput
+  }
+
+  export type WeighInsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: WeighInsWhereInput | WeighInsWhereInput[]
+    OR?: WeighInsWhereInput[]
+    NOT?: WeighInsWhereInput | WeighInsWhereInput[]
+    weight?: FloatFilter<"WeighIns"> | number
+    date?: DateTimeFilter<"WeighIns"> | Date | string
+    updatedAt?: DateTimeFilter<"WeighIns"> | Date | string
+    participantId?: IntFilter<"WeighIns"> | number
+    participant?: XOR<ParticipantScalarRelationFilter, ParticipantWhereInput>
+  }, "id">
+
+  export type WeighInsOrderByWithAggregationInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    date?: SortOrder
+    updatedAt?: SortOrder
+    participantId?: SortOrder
+    _count?: WeighInsCountOrderByAggregateInput
+    _avg?: WeighInsAvgOrderByAggregateInput
+    _max?: WeighInsMaxOrderByAggregateInput
+    _min?: WeighInsMinOrderByAggregateInput
+    _sum?: WeighInsSumOrderByAggregateInput
+  }
+
+  export type WeighInsScalarWhereWithAggregatesInput = {
+    AND?: WeighInsScalarWhereWithAggregatesInput | WeighInsScalarWhereWithAggregatesInput[]
+    OR?: WeighInsScalarWhereWithAggregatesInput[]
+    NOT?: WeighInsScalarWhereWithAggregatesInput | WeighInsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"WeighIns"> | number
+    weight?: FloatWithAggregatesFilter<"WeighIns"> | number
+    date?: DateTimeWithAggregatesFilter<"WeighIns"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"WeighIns"> | Date | string
+    participantId?: IntWithAggregatesFilter<"WeighIns"> | number
+  }
+
   export type PostCreateInput = {
     id?: string
     name: string
@@ -7328,6 +9950,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7341,6 +9964,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -7354,6 +9978,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7367,6 +9992,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7649,6 +10275,117 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ParticipantCreateInput = {
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    user: UserCreateNestedOneWithoutParticipantInput
+    weighIns?: WeighInsCreateNestedManyWithoutParticipantInput
+  }
+
+  export type ParticipantUncheckedCreateInput = {
+    id?: number
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    userId: string
+    weighIns?: WeighInsUncheckedCreateNestedManyWithoutParticipantInput
+  }
+
+  export type ParticipantUpdateInput = {
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutParticipantNestedInput
+    weighIns?: WeighInsUpdateManyWithoutParticipantNestedInput
+  }
+
+  export type ParticipantUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    weighIns?: WeighInsUncheckedUpdateManyWithoutParticipantNestedInput
+  }
+
+  export type ParticipantCreateManyInput = {
+    id?: number
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    userId: string
+  }
+
+  export type ParticipantUpdateManyMutationInput = {
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParticipantUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WeighInsCreateInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+    participant: ParticipantCreateNestedOneWithoutWeighInsInput
+  }
+
+  export type WeighInsUncheckedCreateInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+    participantId: number
+  }
+
+  export type WeighInsUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participant?: ParticipantUpdateOneRequiredWithoutWeighInsNestedInput
+  }
+
+  export type WeighInsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participantId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WeighInsCreateManyInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+    participantId: number
+  }
+
+  export type WeighInsUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WeighInsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participantId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7772,6 +10509,11 @@ export namespace Prisma {
     every?: PostWhereInput
     some?: PostWhereInput
     none?: PostWhereInput
+  }
+
+  export type ParticipantNullableScalarRelationFilter = {
+    is?: ParticipantWhereInput | null
+    isNot?: ParticipantWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -7980,6 +10722,147 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type WeighInsListRelationFilter = {
+    every?: WeighInsWhereInput
+    some?: WeighInsWhereInput
+    none?: WeighInsWhereInput
+  }
+
+  export type WeighInsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParticipantCountOrderByAggregateInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    goalDate?: SortOrder
+    startingWeight?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ParticipantAvgOrderByAggregateInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    startingWeight?: SortOrder
+  }
+
+  export type ParticipantMaxOrderByAggregateInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    goalDate?: SortOrder
+    startingWeight?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ParticipantMinOrderByAggregateInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    goalDate?: SortOrder
+    startingWeight?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ParticipantSumOrderByAggregateInput = {
+    id?: SortOrder
+    goalWeight?: SortOrder
+    startingWeight?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ParticipantScalarRelationFilter = {
+    is?: ParticipantWhereInput
+    isNot?: ParticipantWhereInput
+  }
+
+  export type WeighInsCountOrderByAggregateInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    date?: SortOrder
+    updatedAt?: SortOrder
+    participantId?: SortOrder
+  }
+
+  export type WeighInsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    participantId?: SortOrder
+  }
+
+  export type WeighInsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    date?: SortOrder
+    updatedAt?: SortOrder
+    participantId?: SortOrder
+  }
+
+  export type WeighInsMinOrderByAggregateInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    date?: SortOrder
+    updatedAt?: SortOrder
+    participantId?: SortOrder
+  }
+
+  export type WeighInsSumOrderByAggregateInput = {
+    id?: SortOrder
+    weight?: SortOrder
+    participantId?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type UserCreateNestedOneWithoutPostsInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
@@ -8023,6 +10906,12 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
+  export type ParticipantCreateNestedOneWithoutUserInput = {
+    create?: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutUserInput
+    connect?: ParticipantWhereUniqueInput
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -8042,6 +10931,12 @@ export namespace Prisma {
     connectOrCreate?: PostCreateOrConnectWithoutCreatedByInput | PostCreateOrConnectWithoutCreatedByInput[]
     createMany?: PostCreateManyCreatedByInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type ParticipantUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutUserInput
+    connect?: ParticipantWhereUniqueInput
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -8094,6 +10989,16 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type ParticipantUpdateOneWithoutUserNestedInput = {
+    create?: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutUserInput
+    upsert?: ParticipantUpsertWithoutUserInput
+    disconnect?: ParticipantWhereInput | boolean
+    delete?: ParticipantWhereInput | boolean
+    connect?: ParticipantWhereUniqueInput
+    update?: XOR<XOR<ParticipantUpdateToOneWithWhereWithoutUserInput, ParticipantUpdateWithoutUserInput>, ParticipantUncheckedUpdateWithoutUserInput>
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -8136,6 +11041,16 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type ParticipantUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutUserInput
+    upsert?: ParticipantUpsertWithoutUserInput
+    disconnect?: ParticipantWhereInput | boolean
+    delete?: ParticipantWhereInput | boolean
+    connect?: ParticipantWhereUniqueInput
+    update?: XOR<XOR<ParticipantUpdateToOneWithWhereWithoutUserInput, ParticipantUpdateWithoutUserInput>, ParticipantUncheckedUpdateWithoutUserInput>
+  }
+
   export type UserCreateNestedOneWithoutSessionsInput = {
     create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
@@ -8166,6 +11081,92 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type UserCreateNestedOneWithoutParticipantInput = {
+    create?: XOR<UserCreateWithoutParticipantInput, UserUncheckedCreateWithoutParticipantInput>
+    connectOrCreate?: UserCreateOrConnectWithoutParticipantInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type WeighInsCreateNestedManyWithoutParticipantInput = {
+    create?: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput> | WeighInsCreateWithoutParticipantInput[] | WeighInsUncheckedCreateWithoutParticipantInput[]
+    connectOrCreate?: WeighInsCreateOrConnectWithoutParticipantInput | WeighInsCreateOrConnectWithoutParticipantInput[]
+    createMany?: WeighInsCreateManyParticipantInputEnvelope
+    connect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+  }
+
+  export type WeighInsUncheckedCreateNestedManyWithoutParticipantInput = {
+    create?: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput> | WeighInsCreateWithoutParticipantInput[] | WeighInsUncheckedCreateWithoutParticipantInput[]
+    connectOrCreate?: WeighInsCreateOrConnectWithoutParticipantInput | WeighInsCreateOrConnectWithoutParticipantInput[]
+    createMany?: WeighInsCreateManyParticipantInputEnvelope
+    connect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutParticipantNestedInput = {
+    create?: XOR<UserCreateWithoutParticipantInput, UserUncheckedCreateWithoutParticipantInput>
+    connectOrCreate?: UserCreateOrConnectWithoutParticipantInput
+    upsert?: UserUpsertWithoutParticipantInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutParticipantInput, UserUpdateWithoutParticipantInput>, UserUncheckedUpdateWithoutParticipantInput>
+  }
+
+  export type WeighInsUpdateManyWithoutParticipantNestedInput = {
+    create?: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput> | WeighInsCreateWithoutParticipantInput[] | WeighInsUncheckedCreateWithoutParticipantInput[]
+    connectOrCreate?: WeighInsCreateOrConnectWithoutParticipantInput | WeighInsCreateOrConnectWithoutParticipantInput[]
+    upsert?: WeighInsUpsertWithWhereUniqueWithoutParticipantInput | WeighInsUpsertWithWhereUniqueWithoutParticipantInput[]
+    createMany?: WeighInsCreateManyParticipantInputEnvelope
+    set?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    disconnect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    delete?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    connect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    update?: WeighInsUpdateWithWhereUniqueWithoutParticipantInput | WeighInsUpdateWithWhereUniqueWithoutParticipantInput[]
+    updateMany?: WeighInsUpdateManyWithWhereWithoutParticipantInput | WeighInsUpdateManyWithWhereWithoutParticipantInput[]
+    deleteMany?: WeighInsScalarWhereInput | WeighInsScalarWhereInput[]
+  }
+
+  export type WeighInsUncheckedUpdateManyWithoutParticipantNestedInput = {
+    create?: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput> | WeighInsCreateWithoutParticipantInput[] | WeighInsUncheckedCreateWithoutParticipantInput[]
+    connectOrCreate?: WeighInsCreateOrConnectWithoutParticipantInput | WeighInsCreateOrConnectWithoutParticipantInput[]
+    upsert?: WeighInsUpsertWithWhereUniqueWithoutParticipantInput | WeighInsUpsertWithWhereUniqueWithoutParticipantInput[]
+    createMany?: WeighInsCreateManyParticipantInputEnvelope
+    set?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    disconnect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    delete?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    connect?: WeighInsWhereUniqueInput | WeighInsWhereUniqueInput[]
+    update?: WeighInsUpdateWithWhereUniqueWithoutParticipantInput | WeighInsUpdateWithWhereUniqueWithoutParticipantInput[]
+    updateMany?: WeighInsUpdateManyWithWhereWithoutParticipantInput | WeighInsUpdateManyWithWhereWithoutParticipantInput[]
+    deleteMany?: WeighInsScalarWhereInput | WeighInsScalarWhereInput[]
+  }
+
+  export type ParticipantCreateNestedOneWithoutWeighInsInput = {
+    create?: XOR<ParticipantCreateWithoutWeighInsInput, ParticipantUncheckedCreateWithoutWeighInsInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutWeighInsInput
+    connect?: ParticipantWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ParticipantUpdateOneRequiredWithoutWeighInsNestedInput = {
+    create?: XOR<ParticipantCreateWithoutWeighInsInput, ParticipantUncheckedCreateWithoutWeighInsInput>
+    connectOrCreate?: ParticipantCreateOrConnectWithoutWeighInsInput
+    upsert?: ParticipantUpsertWithoutWeighInsInput
+    connect?: ParticipantWhereUniqueInput
+    update?: XOR<XOR<ParticipantUpdateToOneWithWhereWithoutWeighInsInput, ParticipantUpdateWithoutWeighInsInput>, ParticipantUncheckedUpdateWithoutWeighInsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8315,6 +11316,49 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type UserCreateWithoutPostsInput = {
     id: string
     name: string
@@ -8325,6 +11369,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    participant?: ParticipantCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -8337,6 +11382,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    participant?: ParticipantUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -8365,6 +11411,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    participant?: ParticipantUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -8377,6 +11424,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    participant?: ParticipantUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -8473,6 +11521,26 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ParticipantCreateWithoutUserInput = {
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    weighIns?: WeighInsCreateNestedManyWithoutParticipantInput
+  }
+
+  export type ParticipantUncheckedCreateWithoutUserInput = {
+    id?: number
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    weighIns?: WeighInsUncheckedCreateNestedManyWithoutParticipantInput
+  }
+
+  export type ParticipantCreateOrConnectWithoutUserInput = {
+    where: ParticipantWhereUniqueInput
+    create: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+  }
+
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
@@ -8565,6 +11633,32 @@ export namespace Prisma {
     createdById?: StringFilter<"Post"> | string
   }
 
+  export type ParticipantUpsertWithoutUserInput = {
+    update: XOR<ParticipantUpdateWithoutUserInput, ParticipantUncheckedUpdateWithoutUserInput>
+    create: XOR<ParticipantCreateWithoutUserInput, ParticipantUncheckedCreateWithoutUserInput>
+    where?: ParticipantWhereInput
+  }
+
+  export type ParticipantUpdateToOneWithWhereWithoutUserInput = {
+    where?: ParticipantWhereInput
+    data: XOR<ParticipantUpdateWithoutUserInput, ParticipantUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ParticipantUpdateWithoutUserInput = {
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    weighIns?: WeighInsUpdateManyWithoutParticipantNestedInput
+  }
+
+  export type ParticipantUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    weighIns?: WeighInsUncheckedUpdateManyWithoutParticipantNestedInput
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id: string
     name: string
@@ -8575,6 +11669,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -8587,6 +11682,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -8615,6 +11711,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -8627,6 +11724,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -8639,6 +11737,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -8651,6 +11750,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    participant?: ParticipantUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -8679,6 +11779,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -8691,6 +11792,172 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    participant?: ParticipantUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutParticipantInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified?: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type UserUncheckedCreateWithoutParticipantInput = {
+    id: string
+    name: string
+    email: string
+    emailVerified?: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type UserCreateOrConnectWithoutParticipantInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutParticipantInput, UserUncheckedCreateWithoutParticipantInput>
+  }
+
+  export type WeighInsCreateWithoutParticipantInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WeighInsUncheckedCreateWithoutParticipantInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WeighInsCreateOrConnectWithoutParticipantInput = {
+    where: WeighInsWhereUniqueInput
+    create: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput>
+  }
+
+  export type WeighInsCreateManyParticipantInputEnvelope = {
+    data: WeighInsCreateManyParticipantInput | WeighInsCreateManyParticipantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutParticipantInput = {
+    update: XOR<UserUpdateWithoutParticipantInput, UserUncheckedUpdateWithoutParticipantInput>
+    create: XOR<UserCreateWithoutParticipantInput, UserUncheckedCreateWithoutParticipantInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutParticipantInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutParticipantInput, UserUncheckedUpdateWithoutParticipantInput>
+  }
+
+  export type UserUpdateWithoutParticipantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutCreatedByNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutParticipantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+  }
+
+  export type WeighInsUpsertWithWhereUniqueWithoutParticipantInput = {
+    where: WeighInsWhereUniqueInput
+    update: XOR<WeighInsUpdateWithoutParticipantInput, WeighInsUncheckedUpdateWithoutParticipantInput>
+    create: XOR<WeighInsCreateWithoutParticipantInput, WeighInsUncheckedCreateWithoutParticipantInput>
+  }
+
+  export type WeighInsUpdateWithWhereUniqueWithoutParticipantInput = {
+    where: WeighInsWhereUniqueInput
+    data: XOR<WeighInsUpdateWithoutParticipantInput, WeighInsUncheckedUpdateWithoutParticipantInput>
+  }
+
+  export type WeighInsUpdateManyWithWhereWithoutParticipantInput = {
+    where: WeighInsScalarWhereInput
+    data: XOR<WeighInsUpdateManyMutationInput, WeighInsUncheckedUpdateManyWithoutParticipantInput>
+  }
+
+  export type WeighInsScalarWhereInput = {
+    AND?: WeighInsScalarWhereInput | WeighInsScalarWhereInput[]
+    OR?: WeighInsScalarWhereInput[]
+    NOT?: WeighInsScalarWhereInput | WeighInsScalarWhereInput[]
+    id?: IntFilter<"WeighIns"> | number
+    weight?: FloatFilter<"WeighIns"> | number
+    date?: DateTimeFilter<"WeighIns"> | Date | string
+    updatedAt?: DateTimeFilter<"WeighIns"> | Date | string
+    participantId?: IntFilter<"WeighIns"> | number
+  }
+
+  export type ParticipantCreateWithoutWeighInsInput = {
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    user: UserCreateNestedOneWithoutParticipantInput
+  }
+
+  export type ParticipantUncheckedCreateWithoutWeighInsInput = {
+    id?: number
+    goalWeight: number
+    goalDate: Date | string
+    startingWeight: number
+    userId: string
+  }
+
+  export type ParticipantCreateOrConnectWithoutWeighInsInput = {
+    where: ParticipantWhereUniqueInput
+    create: XOR<ParticipantCreateWithoutWeighInsInput, ParticipantUncheckedCreateWithoutWeighInsInput>
+  }
+
+  export type ParticipantUpsertWithoutWeighInsInput = {
+    update: XOR<ParticipantUpdateWithoutWeighInsInput, ParticipantUncheckedUpdateWithoutWeighInsInput>
+    create: XOR<ParticipantCreateWithoutWeighInsInput, ParticipantUncheckedCreateWithoutWeighInsInput>
+    where?: ParticipantWhereInput
+  }
+
+  export type ParticipantUpdateToOneWithWhereWithoutWeighInsInput = {
+    where?: ParticipantWhereInput
+    data: XOR<ParticipantUpdateWithoutWeighInsInput, ParticipantUncheckedUpdateWithoutWeighInsInput>
+  }
+
+  export type ParticipantUpdateWithoutWeighInsInput = {
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutParticipantNestedInput
+  }
+
+  export type ParticipantUncheckedUpdateWithoutWeighInsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    goalWeight?: IntFieldUpdateOperationsInput | number
+    goalDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startingWeight?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SessionCreateManyUserInput = {
@@ -8818,6 +12085,34 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WeighInsCreateManyParticipantInput = {
+    id: number
+    weight: number
+    date?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WeighInsUpdateWithoutParticipantInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WeighInsUncheckedUpdateWithoutParticipantInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WeighInsUncheckedUpdateManyWithoutParticipantInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    weight?: FloatFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

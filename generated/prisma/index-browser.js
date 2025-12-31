@@ -175,6 +175,22 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ParticipantScalarFieldEnum = {
+  id: 'id',
+  goalWeight: 'goalWeight',
+  goalDate: 'goalDate',
+  startingWeight: 'startingWeight',
+  userId: 'userId'
+};
+
+exports.Prisma.WeighInsScalarFieldEnum = {
+  id: 'id',
+  weight: 'weight',
+  date: 'date',
+  updatedAt: 'updatedAt',
+  participantId: 'participantId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -196,7 +212,9 @@ exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Participant: 'Participant',
+  WeighIns: 'WeighIns'
 };
 
 /**

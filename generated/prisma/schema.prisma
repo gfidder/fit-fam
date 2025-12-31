@@ -28,16 +28,17 @@ model Post {
 }
 
 model User {
-  id            String    @id
+  id            String       @id
   name          String //@db.Text
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean      @default(false)
   image         String? //@db.Text
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now()) @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @default(now()) @updatedAt
   sessions      Session[]
   accounts      Account[]
   posts         Post[]
+  participant   Participant?
 
   @@unique([email])
   @@map("user")
@@ -86,4 +87,27 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model Participant {
+  id             Int        @id @default(autoincrement())
+  goalWeight     Int
+  goalDate       DateTime
+  startingWeight Int
+  user           User       @relation(fields: [userId], references: [id])
+  userId         String     @unique
+  weighIns       WeighIns[]
+
+  @@map("participant")
+}
+
+model WeighIns {
+  id            Int         @id
+  weight        Float
+  date          DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  participantId Int
+
+  @@map("weight-ins")
 }
