@@ -27,11 +27,28 @@ export default async function Home() {
     return currentWeight;
   };
 
+  const getWeightLost = async (participantId: number, startWeight: number) =>
+    startWeight - (await getCurrentWeight(participantId));
+  const getRemainingWeight = async (
+    participantId: number,
+    goalWeight: number,
+  ) => Math.max(0, (await getCurrentWeight(participantId)) - goalWeight);
+
   const getWeeksRemaining = (goalDate: Date) => {
     const today = new Date();
     const diffTime = goalDate.getTime() - today.getTime();
     const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7));
     return Math.max(0, diffWeeks);
+  };
+
+  const getWeeklyTarget = async (
+    participantId: number,
+    goalWeight: number,
+    goalDate: Date,
+  ) => {
+    const remaining = await getRemainingWeight(participantId, goalWeight);
+    const weeks = getWeeksRemaining(goalDate);
+    return weeks > 0 ? remaining / weeks : 0;
   };
 
   const totalStartWeight = participants.reduce(
@@ -115,8 +132,98 @@ export default async function Home() {
           </h3>
           <table className="w-full border-collapse bg-white">
             <thead>
-              <tr className="bg-gray-100"></tr>
+              <tr className="bg-gray-100">
+                {[
+                  "Name",
+                  "Starting Weight",
+                  "Current Weight",
+                  "Goal Weight",
+                  "Lost So Far",
+                  "Remaining",
+                  "Weekly Target",
+                  "Progress %",
+                ].map((header) => (
+                  <th
+                    key={header}
+                    className="border-b-2 border-gray-200 p-4 text-left text-sm font-semibold text-gray-700"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
             </thead>
+            <tbody>
+              {participants.map(async (participant) => {
+                const currentWeight = await getCurrentWeight(participant.id);
+                const weightLost = await getWeightLost(
+                  participant.id,
+                  participant.startingWeight,
+                );
+                const remaining = await getRemainingWeight(
+                  participant.id,
+                  participant.goalWeight,
+                );
+                const weeklyTarget = await getWeeklyTarget(
+                  participant.id,
+                  participant.goalWeight,
+                  participant.goalDate,
+                );
+                const goalProgress =
+                  participant.startingWeight - participant.goalWeight > 0
+                    ? (weightLost /
+                        (participant.startingWeight - participant.goalWeight)) *
+                      100
+                    : 0;
+                const lostColor =
+                  weightLost > 0
+                    ? "text-green-600"
+                    : weightLost < 0
+                      ? "text-red-600"
+                      : "text-gray-600";
+                const progressBarColor =
+                  goalProgress >= 100 ? "bg-green-600" : "bg-blue-400";
+
+                return (
+                  <tr key={participant.userId} className="hover:bg-gray-50">
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      <strong>{participant.userId}</strong>
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      {participant.startingWeight.toFixed(1)} lbs
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      {currentWeight.toFixed(1)}
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      {participant.goalWeight.toFixed(1)} lbs
+                    </td>
+                    <td
+                      className={`p3 border-b border-gray-100 text-sm ${lostColor} font-bold`}
+                    >
+                      {weightLost > 0 ? "-" : weightLost < 0 ? "+" : ""}
+                      {Math.abs(weightLost).toFixed(1)} lbs
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      {remaining.toFixed(1)} lbs
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      {weeklyTarget.toFixed(1)} lbs/week
+                    </td>
+                    <td className="p3 border-b border-gray-100 text-sm">
+                      <div className="flex items-center">
+                        <div className="mr-2 h-2 w-[60px] rounded bg-gray-200">
+                          <div
+                            className={`${progressBarColor} h-full rounded`}
+                            style={{ width: `${Math.min(100, goalProgress)}%` }}
+                          />
+                        </div>
+                        {goalProgress.toFixed(0)}%
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
