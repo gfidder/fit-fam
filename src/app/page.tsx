@@ -211,7 +211,7 @@ export default async function Home() {
                     </td>
                     <td className="p3 border-b border-gray-100 text-sm">
                       <div className="flex items-center">
-                        <div className="mr-2 h-2 w-[60px] rounded bg-gray-200">
+                        <div className="mr-2 h-2 w-15 rounded bg-gray-200">
                           <div
                             className={`${progressBarColor} h-full rounded`}
                             style={{ width: `${Math.min(100, goalProgress)}%` }}

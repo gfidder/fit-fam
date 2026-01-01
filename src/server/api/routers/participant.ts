@@ -5,6 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { db } from "~/server/db";
 
 export const participantRouter = createTRPCRouter({
   getNumberOfParticipants: publicProcedure.query(async ({ ctx }) => {
@@ -53,6 +54,32 @@ export const participantRouter = createTRPCRouter({
       } else {
         return participant.startingWeight;
       }
+    }),
+
+  setGoalWeight: protectedProcedure
+    .input(z.object({ id: z.number(), goalWeight: z.number() }))
+    .query(async ({ ctx, input }) => {
+      await ctx.db.participant.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          goalWeight: input.goalWeight,
+        },
+      });
+    }),
+
+  setGoalDate: protectedProcedure
+    .input(z.object({ id: z.number(), goalDate: z.date() }))
+    .query(async ({ ctx, input }) => {
+      await ctx.db.participant.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          goalDate: input.goalDate,
+        },
+      });
     }),
 
   getSecretMessage: protectedProcedure.query(() => {
