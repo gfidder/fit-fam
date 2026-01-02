@@ -55,7 +55,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run linter
-        env: { "SKIP_ENV_VALIDATION": "1" }
+        env:
+          SKIP_ENV_VALIDATION: 1
         run: pnpm lint
 
   build-app:
@@ -96,5 +97,6 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build project
-        env: { "SKIP_ENV_VALIDATION": "1" }
+        env:
+          SKIP_ENV_VALIDATION: 1
         run: pnpm build
