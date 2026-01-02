@@ -8,6 +8,12 @@ export default async function Home() {
 
   const numberOfParticipants = participants.length;
 
+  const participantIds: Array<number> = [];
+
+  participants.forEach((p) => {
+    participantIds.push(p.id);
+  });
+
   async function getCurrentWeight(participantId: number): Promise<number> {
     let currentWeight = 0;
 
@@ -51,17 +57,26 @@ export default async function Home() {
     return weeks > 0 ? remaining / weeks : 0;
   };
 
+  async function getTotalCurrentWeight(participantIds: Array<number>) {
+    let totalCurrentWeight = 0;
+
+    for (let i = 0; i < participantIds.length; i++) {
+      const pId = participantIds.at(i);
+      if (pId !== undefined) {
+        const currentWeight = await getCurrentWeight(pId);
+        totalCurrentWeight = totalCurrentWeight + currentWeight;
+      }
+    }
+
+    return totalCurrentWeight;
+  }
+
   const totalStartWeight = participants.reduce(
     (sum, p) => sum + p.startingWeight,
     0,
   );
 
-  let totalCurrentWeight = 0;
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  participants.forEach(async (participant) => {
-    const currentWeight = await getCurrentWeight(participant.id);
-    totalCurrentWeight = totalCurrentWeight + currentWeight;
-  });
+  const totalCurrentWeight = await getTotalCurrentWeight(participantIds);
   const totalGoalWeight = participants.reduce(
     (sum, p) => sum + p.goalWeight,
     0,
