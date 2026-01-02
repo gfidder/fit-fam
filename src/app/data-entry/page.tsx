@@ -1,4 +1,5 @@
 import { api } from "~/trpc/server";
+import { AddParticipant } from "../_components/add_participant_modal";
 
 interface DateObject {
   date: Date;
@@ -9,13 +10,13 @@ interface DateObject {
 export default async function DataEntry() {
   const participants = await api.participant.getParticipants();
 
-  const getParticipantWeights = async (participantId: number) => {
-    const weights = await api.participant.getParticipantWeights({
-      id: participantId,
-    });
+  // const getParticipantWeights = async (participantId: number) => {
+  //   const weights = await api.participant.getParticipantWeights({
+  //     id: participantId,
+  //   });
 
-    return weights;
-  };
+  //   return weights;
+  // };
 
   let weekDates: Array<DateObject> = [];
 
@@ -35,14 +36,6 @@ export default async function DataEntry() {
       const day = date.getUTCDate();
 
       const key = date.toISOString().split("T")[0];
-      console.log(key);
-      let keyNum;
-
-      if (key !== undefined) {
-        keyNum = Number(key);
-      } else {
-        keyNum = 0;
-      }
 
       dates.push({
         date: date,
@@ -54,18 +47,16 @@ export default async function DataEntry() {
   };
   weekDates = setDates();
 
-  console.log(weekDates);
+  // async function updateGoalWeight(participantId: number, goalWeight: number) {
+  //   await api.participant.setGoalWeight({
+  //     id: participantId,
+  //     goalWeight,
+  //   });
+  // }
 
-  async function updateGoalWeight(participantId: number, goalWeight: number) {
-    await api.participant.setGoalWeight({
-      id: participantId,
-      goalWeight,
-    });
-  }
-
-  const updateGoalDate = (participantId: number, goalDate: Date) => {
-    //
-  };
+  // const updateGoalDate = (participantId: number, goalDate: Date) => {
+  //   //
+  // };
 
   return (
     <div className="p-8">
@@ -79,12 +70,7 @@ export default async function DataEntry() {
       </div>
 
       <div className="mb-5 flex flex-wrap gap-2">
-        <button
-          // onClick={() => setShowAddModal(true)}
-          className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-all hover:bg-green-700"
-        >
-          + Add New Participant
-        </button>
+        <AddParticipant />
         <button
         // onClick={() => setShowHidden(!showHidden)}
         // className={`rounded-lg px-6 py-3 font-semibold text-white transition-all ${showHidden ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"}`}
@@ -161,14 +147,15 @@ export default async function DataEntry() {
                     className="w-35 rounded border border-gray-300 px-2 py-1"
                   /> */}
                 </td>
-                {weekDates.slice(0, 35).map(async (week, index) => {
-                  const weightValue = await getParticipantWeights(
-                    participant.id,
-                  );
-                  const displayValue =
-                    weightValue !== undefined && weightValue !== null
-                      ? String(weightValue.at(index)?.weight)
-                      : "";
+                {weekDates.slice(0, 35).map(async (week) => {
+                  // {weekDates.slice(0, 35).map(async (week, index) => {
+                  // const weightValue = await getParticipantWeights(
+                  //   participant.id,
+                  // );
+                  // const displayValue =
+                  //   weightValue !== undefined && weightValue !== null
+                  //     ? String(weightValue.at(index)?.weight)
+                  //     : "";
                   return (
                     <td
                       key={week.key}
