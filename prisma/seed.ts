@@ -1,4 +1,4 @@
-import { db } from "~/server/db";
+import { db } from "../server/db";
 
 async function main() {
   const gabeId = "cl9ebqhxk00003b600tymydho";

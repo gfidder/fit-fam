@@ -3,7 +3,7 @@ const _route = useRoute();
 
 const subNavigation = ref([
   {
-    id: "dashboard",
+    id: "index",
     link: "/",
     label: "Dashboard",
     current: false,
@@ -33,6 +33,8 @@ onMounted(() => {
   const currentPageMatch = useRoute()
     .name?.toString()
     .slice(0, hasTrailing ? -1 : useRoute().name?.toString().length);
+
+  // console.log(currentPageMatch);
 
   subNavigation.value.forEach((page) => {
     if (currentPageMatch?.includes(page.id.toLowerCase())) {
@@ -72,6 +74,7 @@ onMounted(() => {
             {{ item.label }}
           </NuxtLink>
         </div>
+        <slot />
       </div>
     </body>
   </html>

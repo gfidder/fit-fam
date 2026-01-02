@@ -14,11 +14,4 @@
       "path": "./.nuxt/tsconfig.node.json"
     }
   ]
-  // "compilerOptions": {
-  //   /* Path Aliases */
-  //   "baseUrl": ".",
-  //   "paths": {
-  //     "~/*": ["./*"]
-  //   }
-  // }
 }

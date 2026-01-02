@@ -3,21 +3,21 @@ import { PrismaClient } from "../prisma/generated/client";
 
 const prismaClientSingleton = () => {
   const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
-  return new PrismaClient({ adapter: pool });
-};
-
-const createPrismaClient = () =>
-  new PrismaClient({
+  return new PrismaClient({
+    adapter: pool,
     log:
       process.env.NODE_ENV === "development"
         ? ["query", "error", "warn"]
         : ["error"],
   });
-
-const globalForPrisma = globalThis as unknown as {
-  prisma: ReturnType<typeof createPrismaClient> | undefined;
 };
 
-export const db = globalForPrisma.prisma ?? createPrismaClient();
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClientSingleton | undefined;
+};
+
+export const db = globalForPrisma.prisma ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;

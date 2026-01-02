@@ -1,7 +1,7 @@
 import { z } from "zod";
 
+import { db } from "~~/server/db";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
-import { db } from "../../db";
 
 export const participantRouter = createTRPCRouter({
   getNumberOfParticipants: publicProcedure.query(async ({ ctx }) => {
@@ -11,9 +11,14 @@ export const participantRouter = createTRPCRouter({
   }),
 
   getParticipants: publicProcedure.query(async ({ ctx }) => {
-    const participants = await ctx.db.participant.findMany({
+    const participants = await db.participant.findMany({
       orderBy: { id: "asc" },
+      include: {
+        weighIns: true,
+      },
     });
+
+    // console.log(participants.length);
 
     return participants;
   }),
