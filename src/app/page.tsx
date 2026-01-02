@@ -6,9 +6,9 @@ import { api, HydrateClient } from "~/trpc/server";
 export default async function Home() {
   const participants = await api.participant.getParticipants();
 
-  const numberOfParticipants = await api.participant.getNumberOfParticipants();
+  const numberOfParticipants = participants.length;
 
-  const getCurrentWeight = async (participantId: number): Promise<number> => {
+  async function getCurrentWeight(participantId: number): Promise<number> {
     let currentWeight = 0;
 
     const startWeight = await api.participant.getParticipantStartWeight({
@@ -25,7 +25,7 @@ export default async function Home() {
     }
 
     return currentWeight;
-  };
+  }
 
   const getWeightLost = async (participantId: number, startWeight: number) =>
     startWeight - (await getCurrentWeight(participantId));

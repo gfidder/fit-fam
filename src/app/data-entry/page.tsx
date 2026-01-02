@@ -1,28 +1,23 @@
-import { api } from "~/trpc/react";
-import { useState } from "react";
+import { api } from "~/trpc/server";
 
 interface DateObject {
   date: Date;
   formatted: string;
-  key: number;
+  key: string;
 }
 
-export default function DataEntry() {
-  const [participants] = api.participant.getParticipants.useSuspenseQuery();
+export default async function DataEntry() {
+  const participants = await api.participant.getParticipants();
 
-  const getParticipantWeights = (participantId: number) => {
-    const weights = api.participant.getParticipantWeights.useSuspenseQuery({
+  const getParticipantWeights = async (participantId: number) => {
+    const weights = await api.participant.getParticipantWeights({
       id: participantId,
     });
 
     return weights;
   };
 
-  const [showHidden, setShowHidden] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showHideModal, setShowHideModal] = useState(false);
-
-  const [weekDates, setWeekDates] = useState<Array<DateObject>>([]);
+  let weekDates: Array<DateObject> = [];
 
   const setDates = () => {
     const dates: DateObject[] = [];
@@ -40,6 +35,7 @@ export default function DataEntry() {
       const day = date.getUTCDate();
 
       const key = date.toISOString().split("T")[0];
+      console.log(key);
       let keyNum;
 
       if (key !== undefined) {
@@ -51,19 +47,21 @@ export default function DataEntry() {
       dates.push({
         date: date,
         formatted: `${month} ${day}`,
-        key: keyNum,
+        key: key ?? "",
       });
     }
-    setWeekDates(dates);
+    return dates;
   };
-  setDates();
+  weekDates = setDates();
 
-  const updateGoalWeight = (participantId: number, goalWeight: number) => {
-    api.participant.setGoalWeight.useQuery({
+  console.log(weekDates);
+
+  async function updateGoalWeight(participantId: number, goalWeight: number) {
+    await api.participant.setGoalWeight({
       id: participantId,
       goalWeight,
     });
-  };
+  }
 
   const updateGoalDate = (participantId: number, goalDate: Date) => {
     //
@@ -82,18 +80,19 @@ export default function DataEntry() {
 
       <div className="mb-5 flex flex-wrap gap-2">
         <button
-          onClick={() => setShowAddModal(true)}
+          // onClick={() => setShowAddModal(true)}
           className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-all hover:bg-green-700"
         >
           + Add New Participant
         </button>
         <button
-          onClick={() => setShowHidden(!showHidden)}
-          className={`rounded-lg px-6 py-3 font-semibold text-white transition-all ${showHidden ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"}`}
+        // onClick={() => setShowHidden(!showHidden)}
+        // className={`rounded-lg px-6 py-3 font-semibold text-white transition-all ${showHidden ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"}`}
         >
-          {showHidden
+          {/* {showHidden
             ? "Hide Hiddent Participants"
-            : "Show Hidden Participants"}
+            : "Show Hidden Participants"} */}
+          Will be hidden button
         </button>
       </div>
 
@@ -138,17 +137,20 @@ export default function DataEntry() {
                   {participant.startingWeight} lbs
                 </td>
                 <td className="border-b border-gray-100 p-3 text-sm">
-                  <input
+                  {/* <input
                     type="number"
-                    value={participant.goalWeight}
-                    onChange={(e) => {
-                      updateGoalWeight(participant.id, e.target.valueAsNumber);
+                    value={"participant.goalWeight"}
+                    onChange={async (e) => {
+                      await updateGoalWeight(
+                        participant.id,
+                        e.target.valueAsNumber,
+                      );
                     }}
                     className="w-17.5 rounded border border-gray-300 px-2 py-1 text-center"
-                  />
+                  /> */}
                 </td>
                 <td className="border-b border-gray-100 p-3 text-sm">
-                  <input
+                  {/* <input
                     type="date"
                     // TODO - Fix how this string is being rendered
                     value={participant.goalDate.toLocaleDateString()}
@@ -157,20 +159,22 @@ export default function DataEntry() {
                       updateGoalDate(participant.id, date);
                     }}
                     className="w-35 rounded border border-gray-300 px-2 py-1"
-                  />
+                  /> */}
                 </td>
-                {weekDates.slice(0, 35).map((week) => {
-                  const weightValue = getParticipantWeights(participant.id);
+                {weekDates.slice(0, 35).map(async (week, index) => {
+                  const weightValue = await getParticipantWeights(
+                    participant.id,
+                  );
                   const displayValue =
                     weightValue !== undefined && weightValue !== null
-                      ? String(weightValue.at(week.key)?.weight)
+                      ? String(weightValue.at(index)?.weight)
                       : "";
                   return (
                     <td
                       key={week.key}
                       className="border-b border-gray-100 p-3 text-sm"
                     >
-                      <input type="number" step="0.1" value={displayValue} />
+                      {/* <input type="number" step="0.1" value={"displayValue"} /> */}
                     </td>
                   );
                 })}
