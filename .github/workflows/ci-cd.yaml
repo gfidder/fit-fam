@@ -99,4 +99,5 @@ jobs:
       - name: Build project
         env:
           SKIP_ENV_VALIDATION: 1
+          DATABASE_URL: $DATABASE_URL
         run: pnpm build
