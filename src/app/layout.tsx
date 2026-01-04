@@ -1,8 +1,10 @@
 import "~/styles/globals.css";
 
-import Link from "next/link";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
+import Link from "next/link";
+
+import TabLayout from "./_components/TabLayout";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -17,11 +19,9 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = "/";
-
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="gradient-purple min-h-screen p-5">
@@ -30,26 +30,27 @@ export default function RootLayout({
             <h1 className="mb-2 text-5xl font-light">
               Family Weight Loss Tracker
             </h1>
+
             <p className="text-lg opacity-90">
               Track progress, stay motivated, achieve goals together
             </p>
-          </div>
-          <div className="flex border-b border-gray-200 bg-gray-100">
-            {[
-              { id: "dashboard", link: "/", label: "Dashboard" },
-              { id: "data-entry", link: "/data-entry", label: "Data Entry" },
-              { id: "charts", link: "/charts", label: "Charts" },
-              { id: "goals", link: "/goals", label: "Goals" },
-            ].map((tab) => (
+            <div className="flex items-center justify-center">
               <Link
-                key={tab.id}
-                href={tab.link}
-                className={`flex-1 px-5 py-4 font-medium transition-all ${pathname === tab.link ? "border-b-4 border-blue-400 bg-white text-blue-400" : "bg-transparent text-gray-600 hover:bg-gray-200"}`}
+                href="/sign-up"
+                className="mx-4 rounded-lg bg-gray-100 px-6 py-2 text-gray-700 hover:bg-gray-200"
               >
-                {tab.label}
+                Sign Up
               </Link>
-            ))}
+              <Link
+                href="/login"
+                className="mx-4 rounded-lg bg-green-600 px-6 py-2 text-gray-50 hover:bg-green-700"
+              >
+                Log In<span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
+
+          <TabLayout />
           <TRPCReactProvider>{children}</TRPCReactProvider>
         </div>
       </body>
