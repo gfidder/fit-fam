@@ -8,9 +8,6 @@ import "./src/env.js";
 const config = {
   reactStrictMode: true,
   output: "standalone",
-  experimental: {
-    authInterrupts: true,
-  },
 };
 
 export default config;

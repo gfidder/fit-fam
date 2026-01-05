@@ -46,13 +46,16 @@ export const regsitrationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input }) => {
-      await auth.api.signInEmail({
+      const data = await auth.api.signInEmail({
         body: {
           email: input.email,
           password: input.password,
-          rememberMe: true,
         },
         headers: await headers(),
       });
+
+      console.log(data.token);
+      console.log(data.url);
+      console.log(data.user);
     }),
 });
