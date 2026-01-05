@@ -6,6 +6,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { headers } from "next/headers";
 
 export const regsitrationRouter = createTRPCRouter({
   registerUser: publicProcedure
@@ -18,7 +19,7 @@ export const regsitrationRouter = createTRPCRouter({
         password: z.string(),
       }),
     )
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async ({ input }) => {
       const nameField = input.nickName ?? input.firstName;
 
       console.log(nameField);
@@ -34,6 +35,24 @@ export const regsitrationRouter = createTRPCRouter({
           lastName: input.lastName,
           nickName: input.nickName,
         },
+      });
+    }),
+
+  signUserIn: publicProcedure
+    .input(
+      z.object({
+        email: z.string(),
+        password: z.string(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      await auth.api.signInEmail({
+        body: {
+          email: input.email,
+          password: input.password,
+          rememberMe: true,
+        },
+        headers: await headers(),
       });
     }),
 });
