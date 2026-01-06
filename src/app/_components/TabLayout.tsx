@@ -6,8 +6,6 @@ import Link from "next/link";
 export default function TabLayout() {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <>
       <div className="flex border-b border-gray-200 bg-gray-100">

@@ -6,6 +6,7 @@ import { api } from "~/trpc/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "~/server/better-auth/client";
+import { signInAction } from "../actions/auth";
 
 type Inputs = {
   email: string;
@@ -29,7 +30,7 @@ export default function Login() {
     onSuccess: async () => {
       await utils.registration.invalidate();
       setIsError(false);
-      // router.push("/profile");
+      router.push("/profile");
     },
     onError: async (e) => {
       await utils.registration.invalidate();
@@ -38,7 +39,7 @@ export default function Login() {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     signInUser.mutate({
       email: data.email,
       password: data.password,
@@ -63,7 +64,7 @@ export default function Login() {
                 <Icon icon="heroicons:exclamation-triangle" />
               </div>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form action={signInAction} className="space-y-6">
               <div>
                 <label
                   htmlFor="email"
