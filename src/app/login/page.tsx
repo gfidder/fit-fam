@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { api } from "~/trpc/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { authClient } from "~/server/better-auth/client";
 
 type Inputs = {
   email: string;
@@ -28,7 +29,7 @@ export default function Login() {
     onSuccess: async () => {
       await utils.registration.invalidate();
       setIsError(false);
-      router.push("/profile");
+      // router.push("/profile");
     },
     onError: async (e) => {
       await utils.registration.invalidate();
@@ -37,7 +38,7 @@ export default function Login() {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     signInUser.mutate({
       email: data.email,
       password: data.password,

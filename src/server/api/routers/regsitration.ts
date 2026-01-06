@@ -6,7 +6,9 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
+import { keepMount } from "better-auth/react";
+import { redirect } from "next/navigation";
 
 export const regsitrationRouter = createTRPCRouter({
   registerUser: publicProcedure
@@ -46,16 +48,30 @@ export const regsitrationRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ input }) => {
-      const data = await auth.api.signInEmail({
+      const cookieStore = await cookies();
+      await auth.api.signInEmail({
         body: {
           email: input.email,
           password: input.password,
         },
-        headers: await headers(),
+        // headers: await headers(),
+        // asResponse: true,
       });
 
-      console.log(data.token);
-      console.log(data.url);
-      console.log(data.user);
+      // const set_cookie = data.headers.get("set-cookie")!;
+      // set_cookie.split("; ").map((cookie) => {
+      //   const c = cookie.split("=");
+      //   console.log(c);
+      //   cookieStore.set(c[0]!, c[1]!);
+      // });
+
+      // // console.log(data.token);
+      // console.log(data.url);
+      // console.log(data.headers);
+      // console.log(data.body);
+      // console.log(data.status);
+      // // console.log(data.user);
+
+      // redirect("/profile");
     }),
 });

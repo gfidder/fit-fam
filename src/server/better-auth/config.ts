@@ -27,7 +27,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [nextCookies()],
+  // plugins: [nextCookies()],
 });
 
 export type Session = typeof auth.$Infer.Session;
