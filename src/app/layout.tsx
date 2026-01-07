@@ -6,6 +6,9 @@ import Link from "next/link";
 
 import TabLayout from "./_components/TabLayout";
 
+import { getSession } from "~/server/better-auth/server";
+import { signOutAction } from "~/app/actions/auth";
+
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
@@ -22,6 +25,8 @@ const geist = Geist({
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const session = await getSession();
+
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="gradient-purple min-h-screen p-5">
@@ -41,12 +46,21 @@ export default async function RootLayout({
               >
                 Sign Up
               </Link>
-              <Link
-                href="/login"
-                className="mx-4 rounded-lg bg-green-600 px-6 py-2 text-gray-50 hover:bg-green-700"
-              >
-                Log In<span aria-hidden="true">&rarr;</span>
-              </Link>
+              {session ? (
+                <button
+                  className="mx-4 rounded-lg bg-green-600 px-6 py-2 text-gray-50 hover:bg-green-700"
+                  onClick={signOutAction}
+                >
+                  Sign Out<span aria-hidden="true">&rarr;</span>
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className="mx-4 rounded-lg bg-green-600 px-6 py-2 text-gray-50 hover:bg-green-700"
+                >
+                  Log In<span aria-hidden="true">&rarr;</span>
+                </Link>
+              )}
             </div>
           </div>
 

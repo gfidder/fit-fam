@@ -1,11 +1,7 @@
 "use client";
 
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
-import { api } from "~/trpc/react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { authClient } from "~/server/better-auth/client";
 import { signInAction } from "../actions/auth";
 
 type Inputs = {
@@ -14,37 +10,10 @@ type Inputs = {
 };
 
 export default function Login() {
-  const utils = api.useUtils();
-  const router = useRouter();
-
-  const [isError, setIsError] = useState(false);
-  const [trpcError, setTrpcError] = useState("");
-
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const signInUser = api.registration.signUserIn.useMutation({
-    onSuccess: async () => {
-      await utils.registration.invalidate();
-      setIsError(false);
-      router.push("/profile");
-    },
-    onError: async (e) => {
-      await utils.registration.invalidate();
-      setTrpcError(e.message);
-      setIsError(true);
-    },
-  });
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    signInUser.mutate({
-      email: data.email,
-      password: data.password,
-    });
-  };
 
   return (
     <>
@@ -57,13 +26,6 @@ export default function Login() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-120">
           <div className="bg-gray-100 px-6 py-12 shadow-lg sm:rounded-lg sm:px-12">
-            {isError && (
-              <div className="flex items-center justify-center text-sm/6 font-medium text-red-600">
-                <Icon icon="heroicons:exclamation-triangle" />
-                {trpcError}
-                <Icon icon="heroicons:exclamation-triangle" />
-              </div>
-            )}
             <form action={signInAction} className="space-y-6">
               <div>
                 <label
@@ -134,7 +96,7 @@ export default function Login() {
                   type="submit"
                   className="gradient-purple flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign Up
+                  Log In
                 </button>
               </div>
             </form>
