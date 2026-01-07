@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
-// import { api } from "~/trpc/react";
-
 export function AddParticipant() {
   const [newParticipant, setNewParticipant] = useState({
     name: "",
