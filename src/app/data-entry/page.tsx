@@ -1,5 +1,5 @@
 import { api } from "~/trpc/server";
-import { AddParticipant } from "../_components/add_participant_modal";
+import { AddParticipant } from "../_components/AddParticipant";
 
 interface DateObject {
   date: Date;
@@ -67,19 +67,6 @@ export default async function DataEntry() {
         <p className="m-0 text-xl font-semibold">
           SEND YOUR WEEKLY WEIGHT TO GABE FOR HIM TO ENTER
         </p>
-      </div>
-
-      <div className="mb-5 flex flex-wrap gap-2">
-        <AddParticipant />
-        <button
-        // onClick={() => setShowHidden(!showHidden)}
-        // className={`rounded-lg px-6 py-3 font-semibold text-white transition-all ${showHidden ? "bg-red-600 hover:bg-red-700" : "bg-gray-600 hover:bg-gray-700"}`}
-        >
-          {/* {showHidden
-            ? "Hide Hiddent Participants"
-            : "Show Hidden Participants"} */}
-          Will be hidden button
-        </button>
       </div>
 
       <div className="overflow-x-auto rounded-xl shadow-md">

@@ -55,7 +55,47 @@ export const participantRouter = createTRPCRouter({
       }
     }),
 
+  createParticipant: protectedProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+        goalWeight: z.number(),
+        startingWeight: z.number(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      console.log(input);
+      const goalDate = await ctx.db.participant.findFirst({});
+
+      const id = Math.floor(Math.random() * 65536);
+
+      console.log(goalDate);
+
+      await ctx.db.participant.create({
+        data: {
+          id,
+          userId: input.userId,
+          goalWeight: input.goalWeight,
+          startingWeight: input.startingWeight,
+          goalDate: goalDate?.goalDate ?? new Date(),
+        },
+      });
+    }),
+
   setGoalWeight: protectedProcedure
+    .input(z.object({ id: z.number(), goalWeight: z.number() }))
+    .query(async ({ ctx, input }) => {
+      await ctx.db.participant.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          goalWeight: input.goalWeight,
+        },
+      });
+    }),
+
+  setStartingWeight: protectedProcedure
     .input(z.object({ id: z.number(), goalWeight: z.number() }))
     .query(async ({ ctx, input }) => {
       await ctx.db.participant.update({
@@ -81,7 +121,15 @@ export const participantRouter = createTRPCRouter({
       });
     }),
 
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  doesParticipantExist: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const p = await ctx.db.participant.findFirst({
+        where: {
+          userId: input.userId,
+        },
+      });
+
+      return p !== null;
+    }),
 });
