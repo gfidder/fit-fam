@@ -42,7 +42,7 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(242);
     console.log(data);
 
