@@ -6,14 +6,13 @@ import { api } from "~/trpc/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface Props {
-  doesParticipantExist: boolean;
-  userId: string | null;
+  participantId: number;
 }
 
-export function AddParticipant({ doesParticipantExist, userId }: Props) {
+export function LogWeight({ participantId }: Props) {
   type Inputs = {
-    startingWeight: number;
-    goalWeight: number;
+    weight: number;
+    date: Date;
   };
 
   const {
@@ -22,20 +21,11 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const [newParticipant, setNewParticipant] = useState({
-    startWeight: 0.0,
-    goalWeight: 0.0,
-  });
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [isError, setIsError] = useState(false);
   const [trpcError, setTrpcError] = useState("");
 
-  let buttonText = "Create Participant";
-  if (doesParticipantExist === true) {
-    buttonText = "Update Goal";
-  }
-
-  const createParticipant = api.participant.createParticipant.useMutation({
+  const logWeight = api.participant.logNewWeight.useMutation({
     onSuccess: () => {
       console.log("it worked");
       setIsError(false);
@@ -43,10 +33,13 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    createParticipant.mutate({
-      goalWeight: data.goalWeight,
-      startingWeight: data.startingWeight,
-      userId: userId ?? "",
+    console.log(242);
+    console.log(data);
+
+    logWeight.mutate({
+      date: data.date,
+      weight: data.weight,
+      participantId: participantId,
     });
   };
 
@@ -56,7 +49,7 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
         onClick={() => setShowAddModal(true)}
         className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-all hover:bg-green-700"
       >
-        {buttonText}
+        Log Weight
       </button>
       <Dialog
         open={showAddModal}
@@ -66,26 +59,26 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
         <div className="fixed inset-0 flex w-screen items-center justify-center bg-black/50 p-4">
           <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
             <DialogTitle className="mb-5 text-center text-xl font-semibold text-gray-700">
-              {buttonText}
+              Log Weight
             </DialogTitle>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <div>
                   <label
-                    htmlFor="startingWeight"
+                    htmlFor="weight"
                     className="block text-sm/6 font-medium text-gray-900"
                   >
-                    Starting Weight (lbs)
+                    Current Weight (lbs)
                   </label>
                   <div className="mt-2">
                     <input
-                      {...register("startingWeight", {
+                      {...register("weight", {
                         required: true,
                         min: 0.0,
                         valueAsNumber: true,
                       })}
-                      id="startingWeight"
-                      name="startingWeight"
+                      id="weight"
+                      name="weight"
                       type="number"
                       step={0.1}
                       required
@@ -98,19 +91,19 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
                     htmlFor="goalWeight"
                     className="block text-sm/6 font-medium text-gray-900"
                   >
-                    Goal Weight (lbs)
+                    Date
                   </label>
                   <div className="mt-2">
                     <input
-                      {...register("goalWeight", {
+                      {...register("date", {
                         required: true,
                         min: 0.0,
-                        valueAsNumber: true,
+                        valueAsDate: true,
                       })}
                       required
-                      type="number"
-                      id="goalWeight"
-                      name="goalWeight"
+                      type="date"
+                      id="date"
+                      name="date"
                       step={0.1}
                       className="rounded-lg border-2 border-gray-200 px-4 py-3 text-base"
                     />
@@ -128,7 +121,7 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
                   className="rounded-lg bg-blue-400 px-5 py-2 font-semibold text-white hover:bg-blue-500"
                   type="submit"
                 >
-                  Add Participant
+                  Log Weight
                 </button>
               </div>
             </form>

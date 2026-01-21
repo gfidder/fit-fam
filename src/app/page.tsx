@@ -98,6 +98,12 @@ export default async function Home() {
 
   const session = await getSession();
 
+  async function getUserName(userId: string) {
+    const name = await api.participant.getUserName({ userId });
+
+    return name;
+  }
+
   if (session) {
     void api.post.getLatest.prefetch();
   }
@@ -199,10 +205,12 @@ export default async function Home() {
                 const progressBarColor =
                   goalProgress >= 100 ? "bg-green-600" : "bg-blue-400";
 
+                const name = await getUserName(participant.userId);
+
                 return (
                   <tr key={participant.userId} className="hover:bg-gray-50">
                     <td className="p3 border-b border-gray-100 text-sm">
-                      <strong>{participant.userId}</strong>
+                      <strong>{name}</strong>
                     </td>
                     <td className="p3 border-b border-gray-100 text-sm">
                       {participant.startingWeight.toFixed(1)} lbs

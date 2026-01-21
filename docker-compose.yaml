@@ -9,6 +9,16 @@ services:
       - pgdata:/var/lib/postgresql/18/docker
     ports:
       - 5432:5432
+  website:
+    image: gabfid/fit-fam:latest
+    environment:
+      DATABASE_URL: postgresql://example:example@postgres:5432/fit-fam
+      BETTER_AUTH_SECRET: cfS9kHkVx+wlJmXHwtQZ/ey0MQqjzpUfYH6Vp22wT7s=
+      BETTER_AUTH_URL: http://localhost:3000
+      BETTER_AUTH_GOOGLE_CLIENT_ID: dev
+      BETTER_AUTH_GOOGLE_CLIENT_SECRET: dev
+    ports:
+      - 3000:3000
 
 volumes:
   pgdata:

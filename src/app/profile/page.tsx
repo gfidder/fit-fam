@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { api } from "~/trpc/server";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { AddParticipant } from "../_components/AddParticipant";
+import { LogWeight } from "../_components/LogWeight";
 
 export default async function Profile() {
   const session = await getSession();
@@ -14,6 +15,9 @@ export default async function Profile() {
   const participantExists = await api.participant.doesParticipantExist({
     userId,
   });
+  // we can set to 0 since this should only work if the participant exists
+  const participantId =
+    (await api.participant.getParticipantId({ userId })) ?? 0;
 
   return (
     <>
@@ -23,6 +27,11 @@ export default async function Profile() {
             doesParticipantExist={participantExists}
             userId={userId}
           />
+          {participantExists && (
+            <div>
+              <LogWeight participantId={participantId} />
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">

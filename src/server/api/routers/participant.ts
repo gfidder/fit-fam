@@ -64,7 +64,6 @@ export const participantRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      console.log(input);
       const goalDate = await ctx.db.participant.findFirst({});
 
       const id = Math.floor(Math.random() * 65536);
@@ -78,6 +77,27 @@ export const participantRouter = createTRPCRouter({
           goalWeight: input.goalWeight,
           startingWeight: input.startingWeight,
           goalDate: goalDate?.goalDate ?? new Date(),
+        },
+      });
+    }),
+
+  logNewWeight: protectedProcedure
+    .input(
+      z.object({
+        participantId: z.number(),
+        weight: z.number(),
+        date: z.date(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const id = Math.floor(Math.random() * 4294967295);
+
+      await ctx.db.weighIns.create({
+        data: {
+          participantId: input.participantId,
+          weight: input.weight,
+          date: input.date,
+          id,
         },
       });
     }),
@@ -131,5 +151,29 @@ export const participantRouter = createTRPCRouter({
       });
 
       return p !== null;
+    }),
+
+  getParticipantId: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const p = await ctx.db.participant.findFirst({
+        where: {
+          userId: input.userId,
+        },
+      });
+
+      return p?.id;
+    }),
+
+  getUserName: publicProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const user = await ctx.db.user.findUnique({
+        where: {
+          id: input.userId,
+        },
+      });
+
+      return user?.name;
     }),
 });
