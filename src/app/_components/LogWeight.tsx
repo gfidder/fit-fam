@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Icon } from "@iconify/react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { api } from "~/trpc/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -27,15 +28,16 @@ export function LogWeight({ participantId }: Props) {
 
   const logWeight = api.participant.logNewWeight.useMutation({
     onSuccess: () => {
-      console.log("it worked");
       setIsError(false);
+      setShowAddModal(false);
+    },
+    onError: (e) => {
+      setTrpcError(e.message);
+      setIsError(true);
     },
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    console.log(242);
-    console.log(data);
-
     logWeight.mutate({
       date: data.date,
       weight: data.weight,
@@ -61,6 +63,13 @@ export function LogWeight({ participantId }: Props) {
             <DialogTitle className="mb-5 text-center text-xl font-semibold text-gray-700">
               Log Weight
             </DialogTitle>
+            {isError && (
+              <div className="flex items-center justify-center text-sm/6 font-medium text-red-600">
+                <Icon icon="heroicons:exclamation-triangle" />
+                {trpcError}
+                <Icon icon="heroicons:exclamation-triangle" />
+              </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <div>
@@ -84,6 +93,13 @@ export function LogWeight({ participantId }: Props) {
                       required
                       className="rounded-lg border-2 border-gray-200 px-4 py-3 text-base"
                     />
+                    {errors.weight && (
+                      <p className="flex items-center text-sm/6 font-medium text-red-600">
+                        <Icon icon="heroicons:exclamation-triangle" />
+                        {errors.weight.message}
+                        <Icon icon="heroicons:exclamation-triangle" />
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -107,6 +123,13 @@ export function LogWeight({ participantId }: Props) {
                       step={0.1}
                       className="rounded-lg border-2 border-gray-200 px-4 py-3 text-base"
                     />
+                    {errors.date && (
+                      <p className="flex items-center text-sm/6 font-medium text-red-600">
+                        <Icon icon="heroicons:exclamation-triangle" />
+                        {errors.date.message}
+                        <Icon icon="heroicons:exclamation-triangle" />
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

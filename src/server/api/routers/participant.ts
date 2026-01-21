@@ -90,7 +90,7 @@ export const participantRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const id = Math.floor(Math.random() * 4294967295);
+      const id = Math.floor(Math.random() * 2117337681);
 
       await ctx.db.weighIns.create({
         data: {
