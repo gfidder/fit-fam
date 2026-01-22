@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { api } from "~/trpc/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signInAction } from "../actions/auth";
 
 type Inputs = {
   firstName: string;
@@ -30,10 +31,15 @@ export default function SignUp() {
   } = useForm<Inputs>();
 
   const registerUser = api.registration.registerUser.useMutation({
-    onSuccess: async () => {
+    onSuccess: async (data, variables) => {
       await utils.registration.invalidate();
       setIsError(false);
-      router.push("/profile");
+
+      const fd = new FormData();
+      fd.set("email", variables.email);
+      fd.set("password", variables.password);
+
+      await signInAction(fd);
     },
     onError: async (e) => {
       await utils.registration.invalidate();
