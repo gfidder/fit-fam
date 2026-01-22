@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { api } from "~/trpc/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Icon } from "@iconify/react";
 
 interface Props {
   doesParticipantExist: boolean;
@@ -22,10 +23,6 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const [newParticipant, setNewParticipant] = useState({
-    startWeight: 0.0,
-    goalWeight: 0.0,
-  });
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [isError, setIsError] = useState(false);
   const [trpcError, setTrpcError] = useState("");
@@ -37,8 +34,12 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
 
   const createParticipant = api.participant.createParticipant.useMutation({
     onSuccess: () => {
-      console.log("it worked");
       setIsError(false);
+      setShowAddModal(false);
+    },
+    onError: (e) => {
+      setTrpcError(e.message);
+      setIsError(true);
     },
   });
 
@@ -68,6 +69,13 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
             <DialogTitle className="mb-5 text-center text-xl font-semibold text-gray-700">
               {buttonText}
             </DialogTitle>
+            {isError && (
+              <div className="flex items-center justify-center text-sm/6 font-medium text-red-600">
+                <Icon icon="heroicons:exclamation-triangle" />
+                {trpcError}
+                <Icon icon="heroicons:exclamation-triangle" />
+              </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <div>
@@ -91,6 +99,13 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
                       required
                       className="rounded-lg border-2 border-gray-200 px-4 py-3 text-base"
                     />
+                    {errors.startingWeight && (
+                      <p className="flex items-center text-sm/6 font-medium text-red-600">
+                        <Icon icon="heroicons:exclamation-triangle" />
+                        {errors.startingWeight.message}
+                        <Icon icon="heroicons:exclamation-triangle" />
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -114,6 +129,13 @@ export function AddParticipant({ doesParticipantExist, userId }: Props) {
                       step={0.1}
                       className="rounded-lg border-2 border-gray-200 px-4 py-3 text-base"
                     />
+                    {errors.goalWeight && (
+                      <p className="flex items-center text-sm/6 font-medium text-red-600">
+                        <Icon icon="heroicons:exclamation-triangle" />
+                        {errors.goalWeight.message}
+                        <Icon icon="heroicons:exclamation-triangle" />
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

@@ -141,7 +141,7 @@ export const participantRouter = createTRPCRouter({
       });
     }),
 
-  doesParticipantExist: protectedProcedure
+  doesParticipantExist: publicProcedure
     .input(z.object({ userId: z.string() }))
     .query(async ({ ctx, input }) => {
       const p = await ctx.db.participant.findFirst({
@@ -153,7 +153,7 @@ export const participantRouter = createTRPCRouter({
       return p !== null;
     }),
 
-  getParticipantId: protectedProcedure
+  getParticipantId: publicProcedure
     .input(z.object({ userId: z.string() }))
     .query(async ({ ctx, input }) => {
       const p = await ctx.db.participant.findFirst({
